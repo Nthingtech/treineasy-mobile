@@ -1,27 +1,53 @@
 package br.com.nthing.exercise;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import java.util.Objects;
 
 @Entity
-public class Exercise extends PanacheEntity {
-    /** PanacheEntity add Id */
+@Table( name = "tbl_exercise")
+public class Exercise {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id_exercise")
+    private Long id;
+
+    @Column(name = "name_exercise", length = 45, nullable = false)
     private String exercise;
+
+    @Column(name = "machine_number", nullable = false)
     private Long  machineNumber;
+
+    @Column(name = "muscle_group", length = 20, nullable = false)
     private String muscleGroup;
+
+    @Column(name = "video_uri")
     private String videoUri;
 
 
     public Exercise() {
     }
 
-    public Exercise(String exercise, Long machineNumber, String muscleGroup, String videoUri) {
+    public Exercise(Long id, String exercise, Long machineNumber, String muscleGroup, String videoUri) {
+        this.id = id;
         this.exercise = exercise;
         this.machineNumber = machineNumber;
         this.muscleGroup = muscleGroup;
         this.videoUri = videoUri;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getExercise() {
@@ -60,23 +86,23 @@ public class Exercise extends PanacheEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Exercise exercise1 = (Exercise) o;
-        return Objects.equals(exercise, exercise1.exercise);
+        Exercise exercise = (Exercise) o;
+        return Objects.equals(id, exercise.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(exercise);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
         return "Exercise{" +
-                "exercise='" + exercise + '\'' +
+                "id=" + id +
+                ", exercise='" + exercise + '\'' +
                 ", machineNumber=" + machineNumber +
                 ", muscleGroup='" + muscleGroup + '\'' +
                 ", videoUri='" + videoUri + '\'' +
-                ", id=" + id +
-                "} " + super.toString();
+                '}';
     }
 }

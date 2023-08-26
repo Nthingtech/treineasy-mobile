@@ -5,3 +5,4 @@
 -- insert into myentity (id, field) values(3, 'field-3');
 -- alter sequence myentity_seq restart with 4;
 
+INSERT INTO tbl_exercise (id_exercise, name_exercise, machine_number, muscle_group, video_uri) VALUES(1, 'cadeira extensora', 2, 'quadríceps', 'https://imagem.com.br');

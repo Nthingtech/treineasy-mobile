@@ -1,5 +1,6 @@
 package br.com.nthing.exercise;
 
+import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -10,10 +11,14 @@ import java.util.List;
 @Path("/exercise")
 public class ExerciseResource {
 
+   @Inject
+   ExerciseRepository exerciseRepository;
+
+
     @GET
-    @Path("list")
+    @Path("/list")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Exercise> get(){
-        return Exercise.listAll();
+        return exerciseRepository.listAll();
     }
 }
