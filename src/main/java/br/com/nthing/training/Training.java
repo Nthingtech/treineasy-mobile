@@ -1,13 +1,17 @@
 package br.com.nthing.training;
 
+import br.com.nthing.training.item.ExerciseItem;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -30,6 +34,9 @@ public class Training {
 
     @Column(name = "status")
     private Integer status;
+
+    @OneToMany(mappedBy = "training", cascade = CascadeType.ALL)
+    private List<ExerciseItem> itens;
 
     public Training() {
     }
@@ -82,6 +89,14 @@ public class Training {
         this.status = status;
     }
 
+    public List<ExerciseItem> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<ExerciseItem> itens) {
+        this.itens = itens;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -105,5 +120,6 @@ public class Training {
                 '}';
     }
 
-    //TODO 40:15 - CREATE EXERCISE_ITEM AND RELATIONS WITH TRAINING AND EXERCISE
+    //TODO vai dar erro até o momento. video mommento 40:30. criar service interface e testar PanachePageRepositoy()
+    //TODO vide https://quarkus.io/guides/hibernate-orm-panache para gerar testes
 }
