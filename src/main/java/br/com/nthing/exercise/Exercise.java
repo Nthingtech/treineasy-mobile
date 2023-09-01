@@ -30,6 +30,8 @@ public class Exercise {
     @Column(name = "video_uri")
     private String videoUri;
 
+    /*@OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL)
+    private List<ExerciseItem> itens;*/ //TODO FUTURA IMPLEMENTAÇÃO PARA VER QUANTAS VEZES FOI UTILIZADO O EXERCÍCIOS
 
     public Exercise() {
     }
@@ -81,6 +83,14 @@ public class Exercise {
     public void setVideoUri(String videoUri) {
         this.videoUri = videoUri;
     }
+
+    /*public List<ExerciseItem> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<ExerciseItem> itens) {
+        this.itens = itens;
+    }*/
 
     @Override
     public boolean equals(Object o) {

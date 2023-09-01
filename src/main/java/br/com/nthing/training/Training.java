@@ -117,6 +117,8 @@ public class Training {
                 ", nameTraining='" + nameTraining + '\'' +
                 ", totalTraining=" + totalTraining +
                 ", concludedAt=" + concludedAt +
+                ", status=" + status +
+                ", itens=" + itens +
                 '}';
     }
 
