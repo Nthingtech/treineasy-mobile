@@ -18,22 +18,28 @@ public class ExerciseService {
         return exer;
     }
 
-
+    @Transactional
     public Exercise alterExercise(Exercise exer) {
         return null;
     }
 
-
+    @Transactional
     public void deleteExercise() {
 
     }
 
-
-    public List<Exercise> listAll() {
+    @Transactional
+    public Exercise findById(Integer id) {
         return null;
     }
 
 
+    @Transactional
+    public List<Exercise> listAll() {
+        return null;
+    }
+
+    @Transactional
     public List<Exercise> searchByKeyword(String key) {
         return null;
     }

@@ -18,13 +18,13 @@ public class Exercise {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_exercise")
-    private Long id;
+    private Integer id;
 
     @Column(name = "name_exercise", length = 45, nullable = false)
     private String exercise;
 
     @Column(name = "machine_number", nullable = false)
-    private Long  machineNumber;
+    private Integer  machineNumber;
 
     @Column(name = "muscle_group", length = 20, nullable = false)
     private String muscleGroup;
@@ -39,7 +39,7 @@ public class Exercise {
     public Exercise() {
     }
 
-    public Exercise(Long id, String exercise, Long machineNumber, String muscleGroup, String videoUri) {
+    public Exercise(Integer id, String exercise, Integer machineNumber, String muscleGroup, String videoUri) {
         this.id = id;
         this.exercise = exercise;
         this.machineNumber = machineNumber;
@@ -49,11 +49,11 @@ public class Exercise {
 
 
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -65,11 +65,11 @@ public class Exercise {
         this.exercise = exercise;
     }
 
-    public Long getMachineNumber() {
+    public Integer getMachineNumber() {
         return machineNumber;
     }
 
-    public void setMachineNumber(Long machineNumber) {
+    public void setMachineNumber(Integer machineNumber) {
         this.machineNumber = machineNumber;
     }
 

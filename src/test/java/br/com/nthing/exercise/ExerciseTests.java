@@ -1,15 +1,19 @@
 package br.com.nthing.exercise;
 
-import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mockito;
+
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @QuarkusTest
 public class ExerciseTests {
 
-    @InjectMock
+    @InjectMocks
     private static ExerciseService service;
     private static Integer idFound = 1;
     private static Integer idNotFound = 100;
@@ -21,16 +25,26 @@ public class ExerciseTests {
         System.out.println("CONFIG TESTE");
         newExercise = new Exercise();
         newExercise.setExercise("Quadriceps");
-        newExercise.setId(1L);
         newExercise.setMuscleGroup("blablabla");
-        newExercise.setMachineNumber(14L);
+        newExercise.setMachineNumber(14);
+
+        createdExercise = new Exercise();
+        createdExercise.setExercise("Quadriceps");
+        createdExercise.setId(1);
+        createdExercise.setMuscleGroup("blablabla");
+        createdExercise.setMachineNumber(14);
 
         service = Mockito.mock(ExerciseService.class);
-        Mockito.when(service.createNewExercise(newExercise)).thenReturn(createdExercise);
+        Mockito.when(service.createNewExercise(newExercise)).thenReturn(new Exercise());
+        Mockito.when(service.findById(idFound)).thenReturn(createdExercise);
+        Mockito.when(service.findById(idNotFound)).thenReturn(null);
+        Mockito.when(service.searchByKeyword("Q")).thenReturn(new ArrayList<Exercise>());
+        Mockito.when(service.listAll()).thenReturn(new ArrayList<Exercise>());
+        Mockito.when(service.alterExercise(createdExercise)).thenReturn(createdExercise);
     }
 
     @Test
     public void shouldStoreExercise() {
-        System.out.println("TESTE TESTE TESTE TESTE");
+        assertNotNull(service.createNewExercise(newExercise));
     }
 }
