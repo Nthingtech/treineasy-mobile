@@ -122,6 +122,6 @@ public class Training {
                 '}';
     }
 
-    //TODO vai dar erro até o momento. video mommento 40:30. criar service interface e testar PanachePageRepositoy()
+
     //TODO vide https://quarkus.io/guides/hibernate-orm-panache para gerar testes
 }

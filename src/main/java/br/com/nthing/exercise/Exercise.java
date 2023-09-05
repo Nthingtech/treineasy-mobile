@@ -1,5 +1,6 @@
 package br.com.nthing.exercise;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import java.util.Objects;
 
 @Entity
 @Table( name = "tbl_exercise")
+@ApplicationScoped
 public class Exercise {
 
     @Id
@@ -33,6 +35,7 @@ public class Exercise {
     /*@OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL)
     private List<ExerciseItem> itens;*/ //TODO FUTURA IMPLEMENTAÇÃO PARA VER QUANTAS VEZES FOI UTILIZADO O EXERCÍCIOS
 
+
     public Exercise() {
     }
 
@@ -43,6 +46,8 @@ public class Exercise {
         this.muscleGroup = muscleGroup;
         this.videoUri = videoUri;
     }
+
+
 
     public Long getId() {
         return id;
@@ -115,4 +120,6 @@ public class Exercise {
                 ", videoUri='" + videoUri + '\'' +
                 '}';
     }
+
+
 }
