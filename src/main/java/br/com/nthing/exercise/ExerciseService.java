@@ -44,4 +44,8 @@ public class ExerciseService {
         return null;
     }
 
+    public List<Exercise> getByKeyword(String keyword) {
+        return exerciseRepository.findByKeyword(keyword);
+    }
+
 }

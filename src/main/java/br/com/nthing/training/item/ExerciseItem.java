@@ -37,6 +37,23 @@ public class ExerciseItem {
     @Column(name = "quantity_number", nullable = false)
     private Integer quantityNumber;
 
+
+    public ExerciseItem() {
+    }
+
+    public ExerciseItem(Long idSequence, Integer seriesNumber, Integer measurementType, Integer rest,
+                        Integer concluded, Integer quantityNumber, String note, Training training, Exercise exercise) {
+        this.idSequence = idSequence;
+        this.seriesNumber = seriesNumber;
+        this.measurementType = measurementType;
+        this.rest = rest;
+        this.concluded = concluded;
+        this.quantityNumber = quantityNumber;
+        this.note = note;
+        this.training = training;
+        this.exercise = exercise;
+    }
+
     public Long getIdSequence() {
         return idSequence;
     }
@@ -118,6 +135,7 @@ public class ExerciseItem {
 
     @ManyToOne
     @JoinColumn(name = "tbl_exercise_id_exercise")
+
     private Exercise exercise;
 
     @Override

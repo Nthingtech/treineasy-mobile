@@ -123,5 +123,4 @@ public class Training {
     }
 
 
-    //TODO vide https://quarkus.io/guides/hibernate-orm-panache para gerar testes
 }

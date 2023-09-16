@@ -27,12 +27,14 @@ public class ExerciseTests {
         newExercise.setExercise("Quadriceps");
         newExercise.setMuscleGroup("blablabla");
         newExercise.setMachineNumber(14);
+        newExercise.setVideoUri("https://google.com");
 
         createdExercise = new Exercise();
         createdExercise.setExercise("Quadriceps");
-        createdExercise.setId(1);
+        createdExercise.setId(1L);
         createdExercise.setMuscleGroup("blablabla");
         createdExercise.setMachineNumber(14);
+        createdExercise.setVideoUri("https://google.com");
 
         service = Mockito.mock(ExerciseService.class);
         Mockito.when(service.createNewExercise(newExercise)).thenReturn(new Exercise());

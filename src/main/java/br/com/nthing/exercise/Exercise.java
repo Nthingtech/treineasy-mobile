@@ -18,7 +18,7 @@ public class Exercise {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_exercise")
-    private Integer id;
+    private Long id;
 
     @Column(name = "name_exercise", length = 45, nullable = false)
     private String exercise;
@@ -39,7 +39,7 @@ public class Exercise {
     public Exercise() {
     }
 
-    public Exercise(Integer id, String exercise, Integer machineNumber, String muscleGroup, String videoUri) {
+    public Exercise(Long id, String exercise, Integer machineNumber, String muscleGroup, String videoUri) {
         this.id = id;
         this.exercise = exercise;
         this.machineNumber = machineNumber;
@@ -49,11 +49,11 @@ public class Exercise {
 
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
