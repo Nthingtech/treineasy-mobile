@@ -135,7 +135,6 @@ public class ExerciseItem {
 
     @ManyToOne
     @JoinColumn(name = "tbl_exercise_id_exercise")
-
     private Exercise exercise;
 
     @Override

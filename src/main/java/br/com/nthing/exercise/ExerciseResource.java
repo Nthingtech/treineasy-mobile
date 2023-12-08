@@ -13,7 +13,7 @@ import java.util.List;
 public class ExerciseResource {
 
    @Inject
-   ExerciseRepository exerciseRepository;
+   ExerciseRepository exerciseRepository; // TODO REMOVER APÓS INSERIR O METODO GET PARA LISTAR NO SERVICE
 
    @Inject
    ExerciseService exerciseService;
