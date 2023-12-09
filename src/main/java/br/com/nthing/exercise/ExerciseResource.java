@@ -31,7 +31,7 @@ public class ExerciseResource {
    @Path("{keyword}")
    @Produces(MediaType.APPLICATION_JSON)
    public List<Exercise> findKeyword(@PathParam("keyword") String keyword) {
-       return exerciseService.getByKeyword(keyword);
+       return exerciseService.getByKeyword(keyword); //TODO TESTE KEYWORD
    }
 
 
