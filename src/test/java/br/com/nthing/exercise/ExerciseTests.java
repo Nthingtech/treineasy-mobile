@@ -51,3 +51,5 @@ public class ExerciseTests {
         assertNotNull(service.createNewExercise(newExercise));
     }
 }
+
+//TODO VIDEO 2 1:01;20
