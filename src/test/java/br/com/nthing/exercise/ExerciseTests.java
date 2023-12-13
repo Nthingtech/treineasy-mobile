@@ -41,6 +41,7 @@ public class ExerciseTests {
         Mockito.when(service.findById(idFound)).thenReturn(createdExercise);
         Mockito.when(service.findById(idNotFound)).thenReturn(null);
         Mockito.when(service.searchByKeyword("Q")).thenReturn(new ArrayList<Exercise>());
+        Mockito.when(service.getByKeyword("Q")).thenReturn(new ArrayList<Exercise>());
         Mockito.when(service.listAll()).thenReturn(new ArrayList<Exercise>());
         Mockito.when(service.alterExercise(createdExercise)).thenReturn(createdExercise);
     }
