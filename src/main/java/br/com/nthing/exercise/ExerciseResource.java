@@ -12,8 +12,10 @@ import java.util.List;
 @Path("/exercise")
 public class ExerciseResource {
 
+/*
    @Inject
    ExerciseRepository exerciseRepository; // TODO REMOVER APÓS INSERIR O METODO GET PARA LISTAR NO SERVICE
+*/
 
    @Inject
    ExerciseService exerciseService;
@@ -24,14 +26,14 @@ public class ExerciseResource {
    @Path("/list")
    @Produces(MediaType.APPLICATION_JSON)
    public List<Exercise> get(){
-       return exerciseRepository.listAll();
+       return exerciseService.listAll();
    }
 
    @GET
    @Path("{keyword}")
    @Produces(MediaType.APPLICATION_JSON)
    public List<Exercise> findKeyword(@PathParam("keyword") String keyword) {
-       return exerciseService.getByKeyword(keyword);
+       return exerciseService.getByKeyword(keyword); //TODO TESTE KEYWORD
    }
 
 

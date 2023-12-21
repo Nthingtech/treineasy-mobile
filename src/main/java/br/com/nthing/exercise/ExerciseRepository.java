@@ -12,4 +12,8 @@ public class ExerciseRepository implements PanacheRepository<Exercise> {
         return list("exercise like ?1 or muscleGroup like ?1", "%" + keyword + "%");
     }
 
+    public Exercise findByExercise(String exercise) {
+        return  find("exercise", exercise).firstResult();
+    }
+
 }

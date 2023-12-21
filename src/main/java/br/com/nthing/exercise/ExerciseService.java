@@ -7,7 +7,7 @@ import jakarta.transaction.Transactional;
 import java.util.List;
 
 @ApplicationScoped
-public class ExerciseService {
+public class ExerciseService implements IExerciseService {
 
     @Inject
     private ExerciseRepository exerciseRepository;
@@ -33,6 +33,10 @@ public class ExerciseService {
         return null;
     }
 
+    @Transactional
+    public Exercise findByExercise(String exercise) {
+        return exerciseRepository.findByExercise(exercise);
+    }
 
     @Transactional
     public List<Exercise> listAll() {
@@ -44,6 +48,7 @@ public class ExerciseService {
         return null;
     }
 
+    @Transactional
     public List<Exercise> getByKeyword(String keyword) {
         return exerciseRepository.findByKeyword(keyword);
     }

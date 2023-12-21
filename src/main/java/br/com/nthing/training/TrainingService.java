@@ -29,6 +29,7 @@ public class TrainingService {
     }
 
     public Training updateTraining(Training train) {
+        trainingRepository.persist(train);//todo procurar solução para dar update da forma correta
         return null;
     }
 
