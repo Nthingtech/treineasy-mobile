@@ -2,7 +2,7 @@ package br.com.nthing.exercise;
 
 import java.util.List;
 
-public interface IExercise {
+public interface IExerciseService {
 
     public Exercise createNewExercise(Exercise exer);
     public Exercise alterExercise(Exercise exer);
