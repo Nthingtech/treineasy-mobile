@@ -6,7 +6,7 @@ import jakarta.inject.Inject;
 import java.util.List;
 
 @ApplicationScoped
-public class TrainingService {
+public class TrainingService implements ITrainingService {
 
     @Inject
     private TrainingRepository trainingRepository;
@@ -16,16 +16,19 @@ public class TrainingService {
         return trai;
     }
 
-    public void deleteTraining(Integer id) {
+    public Training alterTraining(Training trai) {
+        return null;
+    }
 
+    public void deleteTraining() {
     }
 
     public void closeTraining(Integer id) {
 
     }
 
-    public void findById(Integer id) {
-
+    public Training findById(Integer id) {
+    return null;
     }
 
     public Training updateTraining(Training train) {
@@ -38,6 +41,10 @@ public class TrainingService {
     }
 
     public List<Training> searchByKeyword(String key) {
+        return null;
+    }
+
+    public List<Training> getByKeyword(String key) {
         return null;
     }
 }

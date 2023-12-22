@@ -4,11 +4,11 @@ import java.util.List;
 
 public interface IExerciseService {
 
-    public Exercise createNewExercise(Exercise exer);
-    public Exercise alterExercise(Exercise exer);
-    public void deleteExercise();
-    public Exercise findById(Integer id);
-    public List<Exercise> listAll();
-    public List<Exercise> searchByKeyword(String Key);
-    public List<Exercise> getByKeyword(String keyWord);
+    Exercise createNewExercise(Exercise exer);
+    Exercise alterExercise(Exercise exer);
+    void deleteExercise();
+    Exercise findById(Integer id);
+    List<Exercise> listAll();
+    List<Exercise> searchByKeyword(String key);
+    List<Exercise> getByKeyword(String keyWord);
 }
