@@ -25,3 +25,4 @@ public class ExerciseRepository implements PanacheRepository<Exercise> {
     }
 
 }
+//TODO VIDEO 3 ---> 18:48
