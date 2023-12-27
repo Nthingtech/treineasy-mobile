@@ -13,7 +13,7 @@ public class ExerciseRepository implements PanacheRepository<Exercise> {
     }
 
     public Exercise findByExercise(String exercise) {
-        return  find("exercise", exercise).firstResult();
+        return  find("exercise", exercise).firstResult(); //TODO teste github desktop
     }
 
 }
