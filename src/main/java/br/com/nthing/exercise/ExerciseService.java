@@ -44,7 +44,7 @@ public class ExerciseService implements IExerciseService {
     }
 
     @Transactional
-    public List<Exercise> searchByKeyword(String key) {
+    public List<Exercise> searchByKeyword(String key) {//TODO DELETAR CASO getByKeyWord funcione
         return null;
     }
 

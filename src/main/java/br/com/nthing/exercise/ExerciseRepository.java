@@ -9,11 +9,19 @@ import java.util.List;
 public class ExerciseRepository implements PanacheRepository<Exercise> {
 
     public List<Exercise> findByKeyword(String keyword) {
-        return list("exercise like ?1 or muscleGroup like ?1", "%" + keyword + "%");
+        return list("name_exercise like ?1 or muscle_group like ?1", "%" + keyword + "%");
+    }
+
+    public List<Exercise> findByKeywordExercise(String keyword) {
+        return list("name_exercise like ?1", "%" + keyword + "%");
+    }
+
+    public List<Exercise> findByKeywordMuscleGroup(String keyword) {
+        return list("muscle_group like ?1", "%" + keyword + "%");
     }
 
     public Exercise findByExercise(String exercise) {
-        return  find("exercise", exercise).firstResult();
+        return  find("name_exercise", exercise).firstResult();
     }
 
 }
