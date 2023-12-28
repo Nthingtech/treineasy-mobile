@@ -29,8 +29,8 @@ public class ExerciseService implements IExerciseService {
     }
 
     @Transactional
-    public Exercise findById(Integer id) {
-        return null;
+    public Exercise findById(Long id) {
+        return exerciseRepository.findById(id);
     }
 
     @Transactional
@@ -40,13 +40,19 @@ public class ExerciseService implements IExerciseService {
 
     @Transactional
     public List<Exercise> listAll() {
-        return null;
+        return exerciseRepository.listAll();
     }
 
     @Transactional
-    public List<Exercise> searchByKeyword(String key) {//TODO DELETAR CASO getByKeyWord funcione
-        return null;
+    public List<Exercise> searchByKeywordExercise(String key) {
+        return exerciseRepository.findByKeywordExercise(key);//todo
     }
+
+    @Transactional
+    public List<Exercise> searchByKeywordMuscleGroup(String key) {
+        return exerciseRepository.findByKeywordMuscleGroup(key);
+    }
+
 
     @Transactional
     public List<Exercise> getByKeyword(String keyword) {

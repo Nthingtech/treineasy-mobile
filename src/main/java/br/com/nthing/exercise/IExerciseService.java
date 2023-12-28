@@ -7,8 +7,9 @@ public interface IExerciseService {
     Exercise createNewExercise(Exercise exer);
     Exercise alterExercise(Exercise exer);
     void deleteExercise();
-    Exercise findById(Integer id);
+    Exercise findById(Long id);
     List<Exercise> listAll();
-    List<Exercise> searchByKeyword(String key);
+    List<Exercise> searchByKeywordExercise(String key);
+    List<Exercise> searchByKeywordMuscleGroup(String key);
     List<Exercise> getByKeyword(String keyWord);
 }

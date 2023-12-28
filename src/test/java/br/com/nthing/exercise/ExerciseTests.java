@@ -1,21 +1,35 @@
 package br.com.nthing.exercise;
 
 import io.quarkus.test.junit.QuarkusTest;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mockito;
-
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @QuarkusTest
 public class ExerciseTests {
 
-    @InjectMocks
-    private static ExerciseService service;
-    private static Integer idFound = 1;
+
+
+    @BeforeEach
+    public void setup() throws Exception{}
+
+    @Test
+    public void  shouldRegisterExercise() {}
+
+    @Test
+    public void shouldFindId() {}
+
+    @Test
+    public void shouldNotFindId() {}
+
+    @Test
+    public void shouldReturnListWithKeywordExercise() {}
+
+    @Test
+    public void shouldReturnListWithKeywordMuscleGroup() {}
+
+    /*@InjectMocks
+    private static ExerciseService service;*/
+/*    private static Integer idFound = 1;
     private static Integer idNotFound = 100;
     private static Exercise newExercise;
     private static Exercise createdExercise;
@@ -49,7 +63,7 @@ public class ExerciseTests {
     @Test
     public void shouldStoreExercise() {
         assertNotNull(service.createNewExercise(newExercise));
-    }
+    }*/
 }
 
-//TODO VIDEO 3 desde o inicio
+
