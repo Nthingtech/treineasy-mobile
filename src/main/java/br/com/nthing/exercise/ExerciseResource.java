@@ -1,7 +1,9 @@
 package br.com.nthing.exercise;
 
 import jakarta.inject.Inject;
+import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
@@ -9,17 +11,11 @@ import jakarta.ws.rs.core.MediaType;
 
 import java.util.List;
 
-@Path("/exercise")
+@Path("/exercises")
 public class ExerciseResource {
-
-/*
-   @Inject
-   ExerciseRepository exerciseRepository; // TODO REMOVER APÓS INSERIR O METODO GET PARA LISTAR NO SERVICE
-*/
 
    @Inject
    ExerciseService exerciseService;
-
 
 
    @GET
@@ -36,6 +32,11 @@ public class ExerciseResource {
        return exerciseService.getByKeyword(keyword); //TODO TESTE KEYWORD
    }
 
-
+   @PUT
+   @Consumes(MediaType.APPLICATION_JSON)
+   @Produces(MediaType.APPLICATION_JSON)
+   public Exercise updateExercise(@PathParam("id") Long id, Exercise exercise) {
+       return  exerciseService.alterExercise(id, exercise);
+   }
 
 }

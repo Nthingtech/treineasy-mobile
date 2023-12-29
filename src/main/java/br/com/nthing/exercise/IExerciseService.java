@@ -5,7 +5,7 @@ import java.util.List;
 public interface IExerciseService {
 
     Exercise createNewExercise(Exercise exer);
-    Exercise alterExercise(Exercise exer);
+    Exercise alterExercise(Long id, Exercise exer);
     void deleteExercise();
     Exercise findById(Long id);
     List<Exercise> listAll();

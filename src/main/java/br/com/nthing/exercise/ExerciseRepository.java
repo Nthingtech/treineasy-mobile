@@ -9,7 +9,7 @@ import java.util.List;
 public class ExerciseRepository implements PanacheRepository<Exercise> {
 
     public List<Exercise> findByKeyword(String keyword) {
-        return list("name_exercise like ?1 or muscle_group like ?1", "%" + keyword + "%");//Todo excluir
+        return list("name_exercise like ?1 or muscle_group like ?1", "%" + keyword + "%");//Todo excluir E ALTERAR TESTES
     }
 
     public List<Exercise> findByKeywordExercise(String keyword) {
@@ -24,5 +24,16 @@ public class ExerciseRepository implements PanacheRepository<Exercise> {
         return  find("name_exercise", exercise).firstResult();
     }
 
+    public Exercise updateExercise(Long id, Exercise exercise) {
+        Exercise entity = findById(id);
+        if (entity == null) {
+            throw new RuntimeException("Exercício não encontrado");
+        }
+
+        entity.setExercise(exercise.getExercise());
+        entity.setMachineNumber(exercise.getMachineNumber());
+        entity.setMuscleGroup(exercise.getMuscleGroup());
+        entity.setVideoUri(exercise.getVideoUri());
+        return  entity;
+    }
 }
-//TODO VIDEO 3 ---> 18:48
