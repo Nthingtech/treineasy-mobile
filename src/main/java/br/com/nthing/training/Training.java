@@ -1,5 +1,6 @@
 package br.com.nthing.training;
 
+import br.com.nthing.training.enums.TrainingStatus;
 import br.com.nthing.training.item.ExerciseItem;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -33,7 +34,7 @@ public class Training {
     private LocalDate concludedAt;
 
     @Column(name = "status")
-    private Integer status; // TODO Change for Enum?
+    private TrainingStatus status; // TODO Change for Enum?
 
     @OneToMany(mappedBy = "training", cascade = CascadeType.ALL)
     private List<ExerciseItem> itens;
@@ -41,7 +42,7 @@ public class Training {
     public Training() {
     }
 
-    public Training(Long id, String nameTraining, Long totalTraining, LocalDate concludedAt, Integer status) {
+    public Training(Long id, String nameTraining, Long totalTraining, LocalDate concludedAt, TrainingStatus status) {
         this.id = id;
         this.nameTraining = nameTraining;
         this.totalTraining = totalTraining;
@@ -81,11 +82,11 @@ public class Training {
         this.concludedAt = concludedAt;
     }
 
-    public Integer getStatus() {
+    public TrainingStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(TrainingStatus status) {
         this.status = status;
     }
 
