@@ -34,10 +34,11 @@ public class Training {
     private LocalDate concludedAt;
 
     @Column(name = "status")
-    private TrainingStatus status; // TODO Change for Enum?
+    private TrainingStatus status;
 
     @OneToMany(mappedBy = "training", cascade = CascadeType.ALL)
     private List<ExerciseItem> itens;
+
 
     public Training() {
     }
