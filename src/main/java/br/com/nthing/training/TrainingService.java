@@ -6,7 +6,7 @@ import jakarta.inject.Inject;
 import java.util.List;
 
 @ApplicationScoped
-public class TrainingService implements ITrainingService {
+public class TrainingService {
 
     @Inject
     private TrainingRepository trainingRepository;

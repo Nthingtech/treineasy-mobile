@@ -7,7 +7,7 @@ import jakarta.transaction.Transactional;
 import java.util.List;
 
 @ApplicationScoped
-public class ExerciseService implements IExerciseService { //TODO VIDEO 3 22:10
+public class ExerciseService {
 
     @Inject
     private ExerciseRepository exerciseRepository;

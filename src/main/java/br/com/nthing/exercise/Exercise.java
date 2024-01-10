@@ -20,13 +20,13 @@ public class Exercise {
     @Column(name = "id_exercise")
     private Long id;
 
-    @Column(name = "name_exercise", length = 45, nullable = false)
+    @Column(name = "name_exercise", length = 45, nullable = true)
     private String exercise;
 
-    @Column(name = "machine_number", nullable = false)
+    @Column(name = "machine_number", nullable = true)
     private Integer  machineNumber;
 
-    @Column(name = "muscle_group", length = 20, nullable = false)
+    @Column(name = "muscle_group", length = 20, nullable = true)
     private String muscleGroup;
 
     @Column(name = "video_uri")

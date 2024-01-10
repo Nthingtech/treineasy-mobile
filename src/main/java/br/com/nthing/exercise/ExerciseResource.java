@@ -15,7 +15,7 @@ import jakarta.ws.rs.core.Response;
 import java.net.URI;
 import java.util.List;
 
-@Path("/exercises")
+@Path("exercises")
 public class ExerciseResource {
 
    @Inject
@@ -38,14 +38,15 @@ public class ExerciseResource {
 
    @POST
    @Transactional
+   @Consumes(MediaType.APPLICATION_JSON)
+   @Produces(MediaType.APPLICATION_JSON)
    public Response createExercise(Exercise exercise) {
        exerciseService.createNewExercise(exercise);
        return Response.created(URI.create("/create/" + exercise.getId())).build();
    }
 
-
-
    @PUT
+   @Path("/update")
    @Consumes(MediaType.APPLICATION_JSON)
    @Produces(MediaType.APPLICATION_JSON)
    public Exercise updateExercise(@PathParam("id") Long id, Exercise exercise) {
