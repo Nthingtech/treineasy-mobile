@@ -24,8 +24,8 @@ public class ExerciseService implements IExerciseService { //TODO VIDEO 3 22:10
     }
 
     @Transactional
-    public void deleteExercise() {
-
+    public void deleteExercise(Exercise exer) {
+        exerciseRepository.delete(exer);
     }
 
     @Transactional
@@ -58,5 +58,6 @@ public class ExerciseService implements IExerciseService { //TODO VIDEO 3 22:10
     public List<Exercise> getByKeyword(String keyword) {
         return exerciseRepository.findByKeyword(keyword);
     }
+
 
 }
