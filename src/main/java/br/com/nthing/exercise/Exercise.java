@@ -16,17 +16,17 @@ import java.util.Objects;
 public class Exercise {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_exercise")
     private Long id;
 
-    @Column(name = "name_exercise", length = 45, nullable = true)
+    @Column(name = "name_exercise", length = 45)
     private String exercise;
 
-    @Column(name = "machine_number", nullable = true)
+    @Column(name = "machine_number")
     private Integer  machineNumber;
 
-    @Column(name = "muscle_group", length = 20, nullable = true)
+    @Column(name = "muscle_group", length = 20)
     private String muscleGroup;
 
     @Column(name = "video_uri")

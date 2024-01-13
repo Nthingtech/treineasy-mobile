@@ -1,24 +1,26 @@
 package br.com.nthing.exercise;
 
 import io.quarkus.test.junit.QuarkusTest;
+import jakarta.inject.Inject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 @QuarkusTest
 public class ExerciseTests {
 
-    @InjectMocks
+
+    @Inject
     private static ExerciseService service;
     private static Long idFound = 1L;
     private static Long idNotFound = 100L;
     private static Exercise newExercise;
     private static Exercise createdExercise;
+
+    private static ArrayList<Exercise> exercisesList;
 
     @BeforeAll
     public static void setup() {
@@ -39,12 +41,13 @@ public class ExerciseTests {
         service = Mockito.mock(ExerciseService.class);
         Mockito.when(service.createNewExercise(newExercise)).thenReturn(new Exercise());
         Mockito.when(service.findById(idFound)).thenReturn(createdExercise);
-        Mockito.when(service.findById(idNotFound)).thenReturn(Optional.empty());
+        //TODO CRIAR NOTFIND ID RETURN NULL
         Mockito.when(service.searchByKeywordMuscleGroup("Q")).thenReturn(new ArrayList<Exercise>());
         Mockito.when(service.searchByKeywordExercise("Q")).thenReturn(new ArrayList<Exercise>());
         Mockito.when(service.getByKeyword("Q")).thenReturn(new ArrayList<Exercise>());
         Mockito.when(service.listAll()).thenReturn(new ArrayList<Exercise>());
         Mockito.when(service.alterExercise(1L, createdExercise)).thenReturn(createdExercise);
+        Mockito.when(service.searchByKeywordExercise("Cadeira")).thenReturn(new ArrayList<Exercise>());
 
 
     }
@@ -63,7 +66,7 @@ public class ExerciseTests {
 
     @Test
     public void shouldNotFindId() {
-        Assertions.(idNotFound);
+       // Assertions.(idNotFound);
     }
 
     @Test

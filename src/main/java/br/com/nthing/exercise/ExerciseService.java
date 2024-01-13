@@ -14,6 +14,8 @@ public class ExerciseService implements IExerciseService {
 
     @Transactional
     public Exercise createNewExercise(Exercise exer) {
+        if (exer.getExercise() == null || exer.getExercise().length() == 0)
+            return null;
         exerciseRepository.persist(exer);
         return exer;
     }
@@ -35,6 +37,7 @@ public class ExerciseService implements IExerciseService {
 
     @Transactional
     public Exercise findByExercise(String exercise) {
+        exercise = exercise.toLowerCase();
         return exerciseRepository.findByExercise(exercise);
     }
 
@@ -45,17 +48,20 @@ public class ExerciseService implements IExerciseService {
 
     @Transactional
     public List<Exercise> searchByKeywordExercise(String key) {
+        key = key.toLowerCase();
         return exerciseRepository.findByKeywordExercise(key);//todo
     }
 
     @Transactional
     public List<Exercise> searchByKeywordMuscleGroup(String key) {
+        key = key.toLowerCase();
         return exerciseRepository.findByKeywordMuscleGroup(key);
     }
 
 
     @Transactional
     public List<Exercise> getByKeyword(String keyword) {
+        keyword = keyword.toLowerCase();
         return exerciseRepository.findByKeyword(keyword);
     }
 
