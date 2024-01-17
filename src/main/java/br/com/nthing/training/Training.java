@@ -20,7 +20,7 @@ import java.util.Objects;
 public class Training {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_training")
     private Long id;
 

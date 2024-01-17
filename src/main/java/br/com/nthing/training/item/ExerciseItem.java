@@ -18,7 +18,7 @@ import java.util.Objects;
 public class ExerciseItem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_sequence")
     private Long idSequence;
 
