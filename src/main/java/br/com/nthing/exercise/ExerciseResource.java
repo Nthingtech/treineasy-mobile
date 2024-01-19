@@ -3,6 +3,7 @@ package br.com.nthing.exercise;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
@@ -61,6 +62,14 @@ public class ExerciseResource {
    @Produces(MediaType.APPLICATION_JSON)
    public Exercise updateExercise(@QueryParam("id") Long id, Exercise exercise) {
        return  exerciseService.alterExercise(id, exercise);
+   }
+
+   @DELETE
+   @Path("delete")
+   @Consumes(MediaType.APPLICATION_JSON)
+   @Produces(MediaType.APPLICATION_JSON)
+   public void deleteExercise(@QueryParam("id") Long id) {
+       exerciseService.deleteExercise(id);
    }
 
 

@@ -6,7 +6,7 @@ public interface IExerciseService {
 
     public Exercise createNewExercise(Exercise exer);
     public Exercise alterExercise(Long id, Exercise exer);
-    public void deleteExercise(Exercise exer);
+    public void deleteExercise(Long id); //public void deleteExercise(Long id, Exercise exer);
     public Exercise findById(Long id);
     public Exercise findByExercise(String exercise);
     public List<Exercise> listAll();

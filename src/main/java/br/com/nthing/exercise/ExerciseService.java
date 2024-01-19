@@ -26,8 +26,8 @@ public class ExerciseService implements IExerciseService {
     }
 
     @Transactional
-    public void deleteExercise(Exercise exer) {
-        exerciseRepository.delete(exer);
+    public void deleteExercise(Long id) {
+        exerciseRepository.deleteById(id);
     }
 
     @Transactional
