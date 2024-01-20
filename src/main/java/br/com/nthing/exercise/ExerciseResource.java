@@ -25,22 +25,25 @@ public class ExerciseResource {
    @GET
    @Path("findById")
    @Produces(MediaType.APPLICATION_JSON)
-   public Exercise findById(@QueryParam("id") Long id){
-       return exerciseService.findById(id);
+   public Response findById(@QueryParam("id") Long id){
+       Exercise exercise = exerciseService.findById(id);
+       return Response.status(Response.Status.OK).entity(exercise).build();
    }
 
-   @GET
-   @Path("list")
-   @Produces(MediaType.APPLICATION_JSON)
-   public List<Exercise> get(){
-       return exerciseService.listAll();
-   }
+    @GET
+    @Path("list")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response get(){
+        List<Exercise> exercises = exerciseService.listAll();
+        return Response.ok(exercises).build();
+    }
 
    @GET
    @Path("{keyword}")
    @Produces(MediaType.APPLICATION_JSON)
-   public List<Exercise> findKeyword(@PathParam("keyword") String keyword) {
-       return exerciseService.getByKeyword(keyword); //TODO TESTE KEYWORD
+   public Response findKeyword(@PathParam("keyword") String keyword) {
+       List<Exercise> exercises = exerciseService.getByKeyword(keyword);
+       return Response.ok(exercises).build(); //TODO TESTE KEYWORD
    }
 
    @POST
@@ -56,23 +59,21 @@ public class ExerciseResource {
        return Response.status(Response.Status.BAD_REQUEST).build();
    }
 
-   @PUT
-   @Path("update")
-   @Consumes(MediaType.APPLICATION_JSON)
-   @Produces(MediaType.APPLICATION_JSON)
-   public Exercise updateExercise(@QueryParam("id") Long id, Exercise exercise) {
-       return  exerciseService.alterExercise(id, exercise);
-   }
+    @PUT
+    @Path("update")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateExercise(@QueryParam("id") Long id, Exercise exercise) {
+        exerciseService.alterExercise(id, exercise);
+        return Response.status(Response.Status.OK).build();
+    }
 
    @DELETE
    @Path("delete")
-   @Consumes(MediaType.APPLICATION_JSON)
-   @Produces(MediaType.APPLICATION_JSON)
-   public void deleteExercise(@QueryParam("id") Long id) {
-       exerciseService.deleteExercise(id);
+   public Response deleteExercise(@QueryParam("id") Long id) {
+        exerciseService.deleteExercise(id);
+        return Response.status(Response.Status.NO_CONTENT).build();
    }
-
-
 
 
 }
