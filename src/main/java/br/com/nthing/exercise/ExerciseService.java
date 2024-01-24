@@ -35,11 +35,10 @@ public class ExerciseService implements IExerciseService {
         return exerciseRepository.findById(id);
     }
 
-    @Transactional
+    /*@Transactional
     public Exercise findByExercise(String exercise) {
-        exercise = exercise.toLowerCase();
         return exerciseRepository.findByExercise(exercise);
-    }
+    }*/
 
     @Transactional
     public List<Exercise> listAll() {
@@ -47,21 +46,18 @@ public class ExerciseService implements IExerciseService {
     }
 
     @Transactional
-    public List<Exercise> searchByKeywordExercise(String key) {
-        key = key.toLowerCase();
-        return exerciseRepository.findByKeywordExercise(key);//todo
+    public List<Exercise> searchByKeywordExercise(String keyexer) {
+        return exerciseRepository.findByKeywordExercise(keyexer);
     }
 
     @Transactional
-    public List<Exercise> searchByKeywordMuscleGroup(String key) {
-        key = key.toLowerCase();
-        return exerciseRepository.findByKeywordMuscleGroup(key);
+    public List<Exercise> searchByKeywordMuscleGroup(String keymusc) {
+        return exerciseRepository.findByKeywordMuscleGroup(keymusc);
     }
 
 
     @Transactional
     public List<Exercise> getByKeyword(String keyword) {
-        keyword = keyword.toLowerCase();
         return exerciseRepository.findByKeyword(keyword);
     }
 

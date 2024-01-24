@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface IExerciseService {
 
-    public Exercise createNewExercise(Exercise exer);
-    public Exercise alterExercise(Long id, Exercise exer);
-    public void deleteExercise(Long id);
-    public Exercise findById(Long id);
-    public Exercise findByExercise(String exercise);
-    public List<Exercise> listAll();
-    public List<Exercise> searchByKeywordExercise(String key);
-    public List<Exercise> searchByKeywordMuscleGroup(String key);
-    public List<Exercise> getByKeyword(String keyword);
+     Exercise createNewExercise(Exercise exer);
+     Exercise alterExercise(Long id, Exercise exer);
+     void deleteExercise(Long id);
+     Exercise findById(Long id);
+     /*Exercise findByExercise(String exercise);*/
+     List<Exercise> listAll();
+     List<Exercise> searchByKeywordExercise(String key);
+     List<Exercise> searchByKeywordMuscleGroup(String key);
+     List<Exercise> getByKeyword(String keyword);
 }

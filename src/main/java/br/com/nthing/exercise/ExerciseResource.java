@@ -27,7 +27,10 @@ public class ExerciseResource {
    @Produces(MediaType.APPLICATION_JSON)
    public Response findById(@QueryParam("id") Long id){
        Exercise exercise = exerciseService.findById(id);
-       return Response.status(Response.Status.OK).entity(exercise).build();
+       if (exercise != null) {
+           return Response.status(Response.Status.OK).entity(exercise).build();
+       }
+       return Response.status(Response.Status.NOT_FOUND).build();
    }
 
     @GET
@@ -43,8 +46,27 @@ public class ExerciseResource {
    @Produces(MediaType.APPLICATION_JSON)
    public Response findKeyword(@PathParam("keyword") String keyword) {
        List<Exercise> exercises = exerciseService.getByKeyword(keyword);
-       return Response.ok(exercises).build(); //TODO TESTE KEYWORD
+       if (exercises != null) {
+           return Response.status(Response.Status.OK).entity(exercises).build(); //search exercise or muscle group
+       }
+       return Response.status(Response.Status.NOT_FOUND).build();
    }
+
+    @GET
+    @Path("exercise/{keyexercise}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findKeywordExercise(@PathParam("keyexercise") String keyexercise) {
+        List<Exercise> exercises = exerciseService.searchByKeywordExercise(keyexercise);
+        return Response.ok(exercises).build(); //search exercise
+    }
+
+    @GET
+    @Path("muscle/{keymuscle}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findKeywordMuscle(@PathParam("keymuscle") String keyemuscle) {
+        List<Exercise> exercises = exerciseService.searchByKeywordMuscleGroup(keyemuscle);
+        return Response.ok(exercises).build(); //search muscle
+    }
 
    @POST
    @Transactional

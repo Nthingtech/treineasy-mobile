@@ -12,20 +12,20 @@ public class ExerciseRepository implements PanacheRepository<Exercise> {
 
 
     public List<Exercise> findByKeyword(String keyword) {
-        return list("exercise like ?1 or muscleGroup like ?1", "%" + keyword + "%");//Todo excluir E ALTERAR TESTES
+        return list("lower(exercise) like lower(?1) or lower(muscleGroup) like lower(?1)", "%" + keyword + "%");//Todo excluir E ALTERAR TESTES
     }
 
     public List<Exercise> findByKeywordExercise(String keyword) {
-        return list("exercise like ?1", "%" + keyword + "%");
+        return list("lower(exercise) like lower(?1)", "%" + keyword + "%");
     }
 
     public List<Exercise> findByKeywordMuscleGroup(String keyword) {
-        return list("muscleGroup like ?1", "%" + keyword + "%");
+        return list("lower(muscleGroup) like lower(?1)", "%" + keyword + "%");
     }
 
-    public Exercise findByExercise(String exercise) {
+    /*public Exercise findByExercise(String exercise) {
         return  find("exercise", exercise).firstResult();
-    }
+    }*/
 
     public Exercise updateExercise(Long id, Exercise exercise) {
         Exercise entity = findById(id);
