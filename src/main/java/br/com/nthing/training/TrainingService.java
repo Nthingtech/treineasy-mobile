@@ -6,35 +6,31 @@ import jakarta.inject.Inject;
 import java.util.List;
 
 @ApplicationScoped
-public class TrainingService {
+public class TrainingService implements ITrainingService {
 
     @Inject
     private TrainingRepository trainingRepository;
 
-    public Training createNewTraining(Training trai ) {
+    public Training createNewTraining(Training trai) {
         trainingRepository.persist(trai);
         return trai;
     }
 
-    public Training alterTraining(Training trai) {
+    public Training alterTraining(Long id, Training trai) {
         return null;
     }
 
     public void deleteTraining() {
     }
 
-    public void closeTraining(Integer id) {
+    public void closeTraining(Long id) {
 
     }
 
-    public Training findById(Integer id) {
-    return null;
-    }
-
-    public Training updateTraining(Training train) {
-        trainingRepository.persist(train);//todo procurar solução para dar update da forma correta
+    public Training findById(Long id) {
         return null;
     }
+
 
     public List<Training> listAll() {
         return null;
@@ -44,7 +40,4 @@ public class TrainingService {
         return null;
     }
 
-    public List<Training> getByKeyword(String key) {
-        return null;
-    }
 }
