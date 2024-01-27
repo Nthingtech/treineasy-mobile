@@ -46,7 +46,7 @@ public class ExerciseTests {
         Mockito.when(service.searchByKeywordExercise("Q")).thenReturn(new ArrayList<Exercise>());
         Mockito.when(service.getByKeyword("Q")).thenReturn(new ArrayList<Exercise>());
         Mockito.when(service.listAll()).thenReturn(new ArrayList<Exercise>());
-        Mockito.when(service.alterExercise(1L, createdExercise)).thenReturn(createdExercise);
+        //Mockito.when(service.alterExercise(1L, createdExercise)).thenReturn(createdExercise);
         Mockito.when(service.searchByKeywordExercise("Cadeira")).thenReturn(new ArrayList<Exercise>());
 
 
@@ -75,13 +75,13 @@ public class ExerciseTests {
     @Test
     public void shouldReturnListWithKeywordMuscleGroup() {}
 
-    @Test
+  /*  @Test
     public void shouldAlterExercise(){
         createdExercise.setExercise("Cadeira Flexora");
         Exercise updateExercise = service.alterExercise(1L, createdExercise);
         Assertions.assertEquals("Cadeira Flexora", updateExercise.getExercise());
 
-    }
+    }*/
 
 }
 

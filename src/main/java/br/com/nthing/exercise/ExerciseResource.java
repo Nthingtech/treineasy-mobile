@@ -80,7 +80,6 @@ public class ExerciseResource {
    @Produces(MediaType.APPLICATION_JSON)
    public Response createExercise(Exercise exercise) {
        Exercise exer = exerciseService.createNewExercise(exercise);
-       //return Response.created(URI.create("/create/" + exercise.getId())).build();
        if (exer != null) {
            return Response.status(Response.Status.CREATED).entity(exercise).build();
        }
@@ -92,8 +91,12 @@ public class ExerciseResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateExercise(@QueryParam("id") Long id, Exercise exercise) {
-        exerciseService.alterExercise(id, exercise);
-        return Response.status(Response.Status.OK).build();
+       Exercise foundExercise = exerciseService.findById(id);
+       if (foundExercise == null){
+           return Response.status(Response.Status.NOT_FOUND).entity("Exercício não encontrado").build();
+       }
+       exerciseService.alterExercise(id, exercise);
+       return Response.status(Response.Status.OK).build();
     }
 
    @DELETE

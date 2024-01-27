@@ -27,7 +27,7 @@ public class ExerciseRepository implements PanacheRepository<Exercise> {
         return  find("exercise", exercise).firstResult();
     }*/
 
-    public Exercise updateExercise(Long id, Exercise exercise) {
+   /* public Exercise updateExercise(Long id, Exercise exercise) {
         Exercise entity = findById(id);
         if (entity == null) {
             throw new RuntimeException("Exercício não encontrado");
@@ -38,5 +38,5 @@ public class ExerciseRepository implements PanacheRepository<Exercise> {
         entity.setMuscleGroup(exercise.getMuscleGroup());
         entity.setVideoUri(exercise.getVideoUri());
         return  entity;
-    }
+    }*/
 }
