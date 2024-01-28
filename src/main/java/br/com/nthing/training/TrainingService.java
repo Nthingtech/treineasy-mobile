@@ -1,9 +1,12 @@
 package br.com.nthing.training;
 
+import br.com.nthing.training.enums.TrainingStatus;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 import java.util.List;
+
+
 
 @ApplicationScoped
 public class TrainingService implements ITrainingService {
@@ -23,8 +26,11 @@ public class TrainingService implements ITrainingService {
     public void deleteTraining() {
     }
 
-    public void closeTraining(Long id) {
-
+    public Training closeTraining(Long id) {
+        Training training = trainingRepository.findById(id);
+        training.setStatus(TrainingStatus.CONCLUDED);
+        trainingRepository.persist(training);
+        return training;
     }
 
     public Training findById(Long id) {

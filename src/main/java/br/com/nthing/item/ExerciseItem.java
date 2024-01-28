@@ -1,4 +1,4 @@
-package br.com.nthing.training.item;
+package br.com.nthing.item;
 
 import br.com.nthing.exercise.Exercise;
 import br.com.nthing.training.Training;

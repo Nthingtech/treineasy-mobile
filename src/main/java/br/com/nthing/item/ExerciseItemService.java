@@ -1,4 +1,4 @@
-package br.com.nthing.training.item;
+package br.com.nthing.item;
 
 public class ExerciseItemService {
 
