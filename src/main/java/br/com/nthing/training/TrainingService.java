@@ -34,16 +34,12 @@ public class TrainingService implements ITrainingService {
     }
 
     public Training findById(Long id) {
-        return null;
+        return trainingRepository.findById(id);
     }
 
 
     public List<Training> listAll() {
-        return null;
-    }
-
-    public List<Training> searchByKeyword(String key) {
-        return null;
+        return trainingRepository.listAll();
     }
 
 }

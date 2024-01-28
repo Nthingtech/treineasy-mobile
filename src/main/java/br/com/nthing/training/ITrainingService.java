@@ -10,5 +10,5 @@ public interface ITrainingService {
     Training closeTraining(Long id);
     Training findById(Long id);
     List<Training> listAll();
-    List<Training> searchByKeyword(String key);
+
 }
