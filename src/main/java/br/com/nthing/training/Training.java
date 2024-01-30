@@ -30,7 +30,7 @@ public class Training {
     @Column(name = "total_training", nullable = false)
     private Long totalTraining;
 
-    @Column(name = "dt_concluded", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE", nullable = false)
+    @Column(name = "dt_concluded", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private LocalDate concludedAt;
 
     @Column(name = "status")

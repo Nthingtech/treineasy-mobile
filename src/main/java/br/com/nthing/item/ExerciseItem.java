@@ -22,7 +22,7 @@ public class ExerciseItem {
     @Column(name = "id_sequence")
     private Long idSequence;
 
-    @Column(name = "series_number", nullable = false)
+    @Column(name = "series_number")
     private Integer seriesNumber;
 
     @Column(name = "measurement_type")
@@ -34,7 +34,7 @@ public class ExerciseItem {
     @Column(name = "concluded")
     private Integer concluded;
 
-    @Column(name = "quantity_number", nullable = false)
+    @Column(name = "quantity_number")
     private Integer quantityNumber;
 
 
