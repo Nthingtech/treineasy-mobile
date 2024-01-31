@@ -1,7 +1,6 @@
 package br.com.nthing.exercise;
 
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -75,7 +74,7 @@ public class ExerciseResource {
     }
 
    @POST
-   @Transactional
+   //@Transactional
    @Consumes(MediaType.APPLICATION_JSON)
    @Produces(MediaType.APPLICATION_JSON)
    public Response createExercise(Exercise exercise) {

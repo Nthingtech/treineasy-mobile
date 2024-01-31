@@ -34,21 +34,27 @@ public class ExerciseItem {
     @Column(name = "concluded")
     private Integer concluded;
 
-    @Column(name = "quantity_number")
-    private Integer quantityNumber;
+    @Column(name = "note")
+    private String note;
 
+    @ManyToOne
+    @JoinColumn(name = "tbl_training_id_training")
+    private Training training;
+
+    @ManyToOne
+    @JoinColumn(name = "tbl_exercise_id_exercise")
+    private Exercise exercise;
 
     public ExerciseItem() {
     }
 
     public ExerciseItem(Long idSequence, Integer seriesNumber, Integer measurementType, Integer rest,
-                        Integer concluded, Integer quantityNumber, String note, Training training, Exercise exercise) {
+                        Integer concluded, String note, Training training, Exercise exercise) {
         this.idSequence = idSequence;
         this.seriesNumber = seriesNumber;
         this.measurementType = measurementType;
         this.rest = rest;
         this.concluded = concluded;
-        this.quantityNumber = quantityNumber;
         this.note = note;
         this.training = training;
         this.exercise = exercise;
@@ -94,14 +100,6 @@ public class ExerciseItem {
         this.concluded = concluded;
     }
 
-    public Integer getQuantityNumber() {
-        return quantityNumber;
-    }
-
-    public void setQuantityNumber(Integer quantityNumber) {
-        this.quantityNumber = quantityNumber;
-    }
-
     public String getNote() {
         return note;
     }
@@ -126,23 +124,12 @@ public class ExerciseItem {
         this.exercise = exercise;
     }
 
-    @Column(name = "note")
-    private String note;
-
-    @ManyToOne
-    @JoinColumn(name = "tbl_training_id_training")
-    private Training training;
-
-    @ManyToOne
-    @JoinColumn(name = "tbl_exercise_id_exercise")
-    private Exercise exercise;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ExerciseItem that = (ExerciseItem) o;
-        return Objects.equals(idSequence, that.idSequence) && Objects.equals(seriesNumber, that.seriesNumber) && Objects.equals(measurementType, that.measurementType) && Objects.equals(rest, that.rest) && Objects.equals(concluded, that.concluded) && Objects.equals(quantityNumber, that.quantityNumber) && Objects.equals(note, that.note) && Objects.equals(training, that.training) && Objects.equals(exercise, that.exercise);
+        return Objects.equals(idSequence, that.idSequence);
     }
 
     @Override
@@ -158,7 +145,6 @@ public class ExerciseItem {
                 ", measurementType=" + measurementType +
                 ", rest=" + rest +
                 ", concluded=" + concluded +
-                ", quantityNumber=" + quantityNumber +
                 ", note='" + note + '\'' +
                 ", training=" + training +
                 ", exercise=" + exercise +
