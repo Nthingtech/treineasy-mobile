@@ -24,10 +24,10 @@ public class Training {
     @Column(name = "id_training")
     private Long id;
 
-    @Column(name = "name_training", length = 30, nullable = false)
+    @Column(name = "name_training", length = 30)
     private String nameTraining;
 
-    @Column(name = "total_training", nullable = false)
+    @Column(name = "total_training")
     private Long totalTraining;
 
     @Column(name = "dt_concluded", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")

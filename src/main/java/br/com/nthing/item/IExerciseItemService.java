@@ -6,5 +6,5 @@ public interface IExerciseItemService {
 
     ExerciseItem updateItem(ExerciseItem update);
 
-    public void deleteItem(Integer idSequence);
+    public void deleteItem(Long idSequence);
 }
