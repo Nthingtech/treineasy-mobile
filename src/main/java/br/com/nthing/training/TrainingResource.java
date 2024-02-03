@@ -12,12 +12,12 @@ import java.util.List;
 public class TrainingResource {
 
     @Inject
-    TrainingRepository trainingRepository;
+    TrainingService trainingService;
 
     @GET
     @Path("/listtraining")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Training> get() {
-        return trainingRepository.listAll();
+        return trainingService.listAll();
     }
 }
