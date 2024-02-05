@@ -47,4 +47,5 @@ public class ExerciseItemResource {
         exerciseItemService.deleteItem(idSequence);
         return Response.status(Response.Status.NO_CONTENT).build();
     }
+
 }

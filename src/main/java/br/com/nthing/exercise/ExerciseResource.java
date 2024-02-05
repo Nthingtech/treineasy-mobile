@@ -74,7 +74,6 @@ public class ExerciseResource {
     }
 
    @POST
-   //@Transactional
    @Consumes(MediaType.APPLICATION_JSON)
    @Produces(MediaType.APPLICATION_JSON)
    public Response createExercise(Exercise exercise) {

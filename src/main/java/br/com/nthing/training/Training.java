@@ -1,7 +1,7 @@
 package br.com.nthing.training;
 
-import br.com.nthing.training.enums.TrainingStatus;
 import br.com.nthing.item.ExerciseItem;
+import br.com.nthing.training.enums.TrainingStatus;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
