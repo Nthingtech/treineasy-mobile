@@ -32,10 +32,6 @@ public class Exercise {
     @Column(name = "video_uri")
     private String videoUri;
 
-    /*@OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL)
-    private List<ExerciseItem> itens;*/ //TODO FUTURA IMPLEMENTAÇÃO PARA VER QUANTAS VEZES FOI UTILIZADO O EXERCÍCIOS
-
-
     public Exercise() {
     }
 
