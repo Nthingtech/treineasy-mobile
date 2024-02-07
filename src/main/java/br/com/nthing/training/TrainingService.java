@@ -34,14 +34,14 @@ public class TrainingService implements ITrainingService {
         Training training = trainingRepository.findById(id);
         training.setStatus(TrainingStatus.CONCLUDED);
         trainingRepository.persist(training);
-        return training;
+        return training; //TODO SUM TRAINING CONCLUDED
     }
 
     @Transactional
     public Training findById(Long id) {
         return trainingRepository.findById(id);
     }
-    
+
 
     @Transactional
     public List<Training> listAll() {

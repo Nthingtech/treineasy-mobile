@@ -37,6 +37,8 @@ public class Training {
     @Column(name = "status")
     private TrainingStatus status;
 
+    //TODO TOTAL TRAININGS CONCLUDED
+
     @OneToMany(mappedBy = "training", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ExerciseItem> itens;
 
