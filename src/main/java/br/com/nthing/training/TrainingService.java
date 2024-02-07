@@ -8,7 +8,6 @@ import jakarta.transaction.Transactional;
 import java.util.List;
 
 
-
 @ApplicationScoped
 public class TrainingService implements ITrainingService {
 
@@ -42,7 +41,7 @@ public class TrainingService implements ITrainingService {
     public Training findById(Long id) {
         return trainingRepository.findById(id);
     }
-
+    
 
     @Transactional
     public List<Training> listAll() {

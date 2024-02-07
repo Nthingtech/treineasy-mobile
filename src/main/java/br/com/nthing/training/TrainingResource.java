@@ -6,6 +6,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -20,9 +21,23 @@ public class TrainingResource {
     @GET
     @Path("/listtraining")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Training> get() {
-        return trainingService.listAll();
+    public Response get() {
+        List<Training> trainings = trainingService.listAll();
+        return Response.ok(trainings).build();
     }
+
+    @GET
+    @Path("findById")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findById(@QueryParam("id") Long id) {
+        Training training = trainingService.findById(id);
+        if (training != null) {
+            return Response.status(Response.Status.OK).entity(training).build();
+        }
+        return  Response.status(Response.Status.NOT_FOUND).build();
+    }
+
+
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
