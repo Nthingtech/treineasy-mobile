@@ -23,20 +23,5 @@ public class ExerciseRepository implements PanacheRepository<Exercise> {
         return list("lower(muscleGroup) like lower(?1)", "%" + keyword + "%");
     }
 
-    /*public Exercise findByExercise(String exercise) {
-        return  find("exercise", exercise).firstResult();
-    }*/
 
-   /* public Exercise updateExercise(Long id, Exercise exercise) {
-        Exercise entity = findById(id);
-        if (entity == null) {
-            throw new RuntimeException("Exercício não encontrado");
-        }
-
-        entity.setExercise(exercise.getExercise());
-        entity.setMachineNumber(exercise.getMachineNumber());
-        entity.setMuscleGroup(exercise.getMuscleGroup());
-        entity.setVideoUri(exercise.getVideoUri());
-        return  entity;
-    }*/
 }

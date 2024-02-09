@@ -2,9 +2,12 @@ package br.com.nthing.training;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
@@ -27,6 +30,17 @@ public class TrainingResource {
     }
 
     @GET
+    @Path(("/training/{keytrai}"))
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findKeywordTraining(@PathParam("keytrai") String keytrai) {
+        List<Training> trainings = trainingService.searchByKeywordTraining(keytrai);
+        if (!trainings.isEmpty()) {
+            return Response.status(Response.Status.OK).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
+    }
+
+    @GET
     @Path("findById")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findById(@QueryParam("id") Long id) {
@@ -36,8 +50,6 @@ public class TrainingResource {
         }
         return  Response.status(Response.Status.NOT_FOUND).build();
     }
-
-
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -49,4 +61,25 @@ public class TrainingResource {
         }
         return Response.status(Response.Status.BAD_REQUEST).build();
     }
+
+    @PUT
+    @Path("update")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateTraining(@QueryParam("id") Long id, Training training) {
+        Training foundTraining = trainingService.findById(id);
+        if(foundTraining == null){
+            return Response.status(Response.Status.NOT_FOUND).entity("Treino não encontrado").build();
+        }
+        trainingService.alterTraining(id,training);
+        return Response.status(Response.Status.OK).build();
+    }
+
+    @DELETE
+    @Path("delete")
+    public Response deleteTraining(@QueryParam("id") Long id) {
+        trainingService.deleteTraining(id);
+        return Response.status(Response.Status.NO_CONTENT).build();
+    }
+
 }

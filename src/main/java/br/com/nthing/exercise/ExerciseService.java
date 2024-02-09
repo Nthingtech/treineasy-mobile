@@ -14,6 +14,7 @@ public class ExerciseService implements IExerciseService {
     @Inject
     private ExerciseRepository exerciseRepository;
 
+    @Override
     @Transactional
     public Exercise createNewExercise(Exercise exer) {
         if (exer.getExercise() == null || exer.getExercise().isEmpty())
@@ -22,15 +23,7 @@ public class ExerciseService implements IExerciseService {
         return exer;
     }
 
-    /*@Transactional
-    public Exercise alterExercise(Long id, Exercise exer) {
-        return exerciseRepository.updateExercise(id, exer);
-    }*/
-
-    /*@Transactional
-    public Exercise alterExercise(Long id, Exercise exer) {
-        return exerciseRepository.updateExercise(id, exer);
-    }*/
+    @Override
     @Transactional
     public Exercise alterExercise(Long id, Exercise exercise) {
         Exercise entity = findById(id);
@@ -46,37 +39,38 @@ public class ExerciseService implements IExerciseService {
         return entity;
     }
 
+    @Override
     @Transactional
     public void deleteExercise(Long id) {
         exerciseRepository.deleteById(id);
     }
 
+    @Override
     @Transactional
     public Exercise findById(Long id) {
         return exerciseRepository.findById(id);
     }
 
-    /*@Transactional
-    public Exercise findByExercise(String exercise) {
-        return exerciseRepository.findByExercise(exercise);
-    }*/
-
+    @Override
     @Transactional
     public List<Exercise> listAll() {
         return exerciseRepository.listAll();
     }
 
+    @Override
     @Transactional
     public List<Exercise> searchByKeywordExercise(String keyexer) {
         return exerciseRepository.findByKeywordExercise(keyexer);
     }
 
+    @Override
     @Transactional
     public List<Exercise> searchByKeywordMuscleGroup(String keymusc) {
         return exerciseRepository.findByKeywordMuscleGroup(keymusc);
     }
 
 
+    @Override
     @Transactional
     public List<Exercise> getByKeyword(String keyword) {
         return exerciseRepository.findByKeyword(keyword);

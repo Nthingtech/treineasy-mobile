@@ -13,14 +13,4 @@ public class TrainingRepository implements PanacheRepository<Training> {
         return list("lower(training) like lower(?1)", "%" + keyword + "%");
     }
 
-    public void updateTraining(Long id, Training training) {
-        Training entity = findById(id);
-        if (entity == null) {
-            throw new RuntimeException("Treino não encontrado");
-        }
-
-        String query = "UPDATE Training SET training = :nameTraining, totalTraining = :totalTraining, concludedAt = :concludedAt, status = :status, WHERE id = :id";
-        update(query, training.getNameTraining()); //TODO
-    }
-
 }
