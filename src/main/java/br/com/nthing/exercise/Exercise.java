@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Size;
 
 import java.util.Objects;
 
@@ -21,6 +22,7 @@ public class Exercise {
     private Long id;
 
     @Column(name = "name_exercise", length = 45)
+    @Size(max = 45, message = "O nome não pode exceder 45 caracteres!")
     private String exercise;
 
     @Column(name = "machine_number")

@@ -94,7 +94,7 @@ public class ExerciseResource {
            return Response.status(Response.Status.NOT_FOUND).entity("Exercício não encontrado").build();
        }
        exerciseService.alterExercise(id, exercise);
-       return Response.status(Response.Status.OK).build();
+       return Response.status(Response.Status.OK).entity(exercise).build();
     }
 
    @DELETE

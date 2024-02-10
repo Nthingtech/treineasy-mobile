@@ -19,7 +19,7 @@ public class ExerciseItemService {
     @Transactional
     public ExerciseItem updateItem(ExerciseItem update) {
         exerciseItemRepository.persist(update);
-        return update; //TODO Teste update
+        return update;
     }
 
     @Transactional

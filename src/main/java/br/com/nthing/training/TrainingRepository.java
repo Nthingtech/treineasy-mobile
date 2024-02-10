@@ -10,7 +10,7 @@ public class TrainingRepository implements PanacheRepository<Training> {
 
     //TODO Usar o update nativo do panache para teste
     public List<Training> findByKeywordTraining(String keyword) {
-        return list("lower(training) like lower(?1)", "%" + keyword + "%");
+        return list("lower(nameTraining) like lower(?1)", "%" + keyword + "%");
     }
 
 }

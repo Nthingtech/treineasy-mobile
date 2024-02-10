@@ -15,7 +15,7 @@ import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
-@Path("/training")
+@Path("trainings")
 public class TrainingResource {
 
     @Inject
@@ -30,12 +30,12 @@ public class TrainingResource {
     }
 
     @GET
-    @Path(("/training/{keytrai}"))
+    @Path("training/{keytrai}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findKeywordTraining(@PathParam("keytrai") String keytrai) {
         List<Training> trainings = trainingService.searchByKeywordTraining(keytrai);
         if (!trainings.isEmpty()) {
-            return Response.status(Response.Status.OK).build();
+            return Response.status(Response.Status.OK).entity(trainings).build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();
     }
@@ -72,8 +72,9 @@ public class TrainingResource {
             return Response.status(Response.Status.NOT_FOUND).entity("Treino não encontrado").build();
         }
         trainingService.alterTraining(id,training);
-        return Response.status(Response.Status.OK).build();
+        return Response.status(Response.Status.OK).entity(training).build();
     }
+
 
     @DELETE
     @Path("delete")

@@ -7,6 +7,8 @@ import jakarta.transaction.Transactional;
 
 import java.util.List;
 
+import static io.quarkus.hibernate.orm.panache.PanacheEntityBase.persist;
+
 
 @ApplicationScoped
 public class TrainingService implements ITrainingService {
@@ -23,8 +25,13 @@ public class TrainingService implements ITrainingService {
 
     @Override
     @Transactional
-    public Training alterTraining(Long id, Training trai) {
-        return null;
+    public Training alterTraining(Long id, Training training) {
+        Training entity = findById(id);
+        if (entity == null) {
+            throw new RuntimeException("Treino não encontrado");
+        }
+        persist(entity);
+        return entity;
     }
 
     @Override

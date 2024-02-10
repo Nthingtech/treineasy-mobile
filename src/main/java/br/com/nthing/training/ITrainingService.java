@@ -6,6 +6,7 @@ public interface ITrainingService {
 
     Training createNewTraining(Training trai);
     Training alterTraining(Long id, Training trai);
+
     void deleteTraining(Long id);
     Training closeTraining(Long id);
     Training findById(Long id);

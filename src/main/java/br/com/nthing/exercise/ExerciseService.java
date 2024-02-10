@@ -39,6 +39,7 @@ public class ExerciseService implements IExerciseService {
         return entity;
     }
 
+
     @Override
     @Transactional
     public void deleteExercise(Long id) {
