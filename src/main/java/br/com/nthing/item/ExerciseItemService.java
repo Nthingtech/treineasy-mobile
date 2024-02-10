@@ -27,3 +27,4 @@ public class ExerciseItemService {
         exerciseItemRepository.delete(idSequence);
     }
 }
+//TODO REFACTOR METHODS
