@@ -3,6 +3,7 @@ package br.com.nthing.item;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
@@ -11,11 +12,21 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+import java.util.List;
+
 @Path("exerciseitems")
 public class ExerciseItemResource {
 
     @Inject
     ExerciseItemService exerciseItemService;
+
+    @GET
+    @Path("list")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response get(){
+        List<ExerciseItem> exerciseItems = exerciseItemService.listAll();
+        return Response.ok(exerciseItems).build();
+    }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
