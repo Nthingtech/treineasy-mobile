@@ -1,6 +1,7 @@
 package br.com.nthing.exercise;
 
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -24,6 +25,7 @@ public class ExerciseResource {
    @GET
    @Path("findById")
    @Produces(MediaType.APPLICATION_JSON)
+   @Transactional
    public Response findById(@QueryParam("id") Long id){
        Exercise exercise = exerciseService.findById(id);
        if (exercise != null) {
@@ -35,6 +37,7 @@ public class ExerciseResource {
     @GET
     @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
     public Response get(){
         List<Exercise> exercises = exerciseService.listAll();
         return Response.ok(exercises).build();
@@ -43,6 +46,7 @@ public class ExerciseResource {
    @GET
    @Path("{keyword}")
    @Produces(MediaType.APPLICATION_JSON)
+   @Transactional
    public Response findKeyword(@PathParam("keyword") String keyword) {
        List<Exercise> exercises = exerciseService.getByKeyword(keyword);
        if (!exercises.isEmpty()) {
@@ -54,6 +58,7 @@ public class ExerciseResource {
     @GET
     @Path("exercise/{keyexercise}")
     @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
     public Response findKeywordExercise(@PathParam("keyexercise") String keyexercise) {
         List<Exercise> exercises = exerciseService.searchByKeywordExercise(keyexercise);
         if (!exercises.isEmpty()) {
@@ -65,6 +70,7 @@ public class ExerciseResource {
     @GET
     @Path("muscle/{keymuscle}")
     @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
     public Response findKeywordMuscle(@PathParam("keymuscle") String keyemuscle) {
         List<Exercise> exercises = exerciseService.searchByKeywordMuscleGroup(keyemuscle);
         if (!exercises.isEmpty()) {
@@ -76,6 +82,7 @@ public class ExerciseResource {
    @POST
    @Consumes(MediaType.APPLICATION_JSON)
    @Produces(MediaType.APPLICATION_JSON)
+   @Transactional
    public Response createExercise(Exercise exercise) {
        Exercise exer = exerciseService.createNewExercise(exercise);
        if (exer != null) {
@@ -88,6 +95,7 @@ public class ExerciseResource {
     @Path("update")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
     public Response updateExercise(@QueryParam("id") Long id, Exercise exercise) {
        Exercise foundExercise = exerciseService.findById(id);
        if (foundExercise == null){
@@ -99,6 +107,7 @@ public class ExerciseResource {
 
    @DELETE
    @Path("delete")
+   @Transactional
    public Response deleteExercise(@QueryParam("id") Long id) {
         exerciseService.deleteExercise(id);
         return Response.status(Response.Status.NO_CONTENT).build();

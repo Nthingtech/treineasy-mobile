@@ -4,11 +4,13 @@ import java.util.List;
 
 public interface IExerciseItemService {
 
+    ExerciseItem findById(Long id);
+
     ExerciseItem insertItem(ExerciseItem newItem);
 
-    ExerciseItem updateItem(ExerciseItem update);
+    ExerciseItem updateItem(Long id, ExerciseItem update);
 
-    public void deleteItem(Long idSequence);
+    void deleteItem(Long idSequence);
 
-    public List<ExerciseItem> listAll();
+    List<ExerciseItem> listAll();
 }
