@@ -2,6 +2,7 @@ package br.com.nthing.training;
 
 import br.com.nthing.item.ExerciseItem;
 import br.com.nthing.training.enums.TrainingStatus;
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -40,6 +41,7 @@ public class Training {
     //TODO TOTAL TRAININGS CONCLUDED
 
     @OneToMany(mappedBy = "training", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonbTransient
     private List<ExerciseItem> itens;
 
 

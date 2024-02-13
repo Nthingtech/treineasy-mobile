@@ -28,7 +28,7 @@ public class ExerciseItemService implements IExerciseItemService {
             throw new RuntimeException("Exercício não encontrado");
         }
 
-        entity.setIdSequence(update.getIdSequence());
+        //entity.setIdSequence(update.getIdSequence());
         entity.setSeriesNumber(update.getSeriesNumber());
         entity.setMeasurementType(update.getMeasurementType());
         entity.setRest(update.getRest());

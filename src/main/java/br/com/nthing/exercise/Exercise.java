@@ -87,14 +87,6 @@ public class Exercise {
         this.videoUri = videoUri;
     }
 
-    /*public List<ExerciseItem> getItens() {
-        return itens;
-    }
-
-    public void setItens(List<ExerciseItem> itens) {
-        this.itens = itens;
-    }*/
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
