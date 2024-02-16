@@ -75,6 +75,19 @@ public class TrainingResource {
         return Response.status(Response.Status.OK).entity(training).build();
     }
 
+    @PUT
+    @Path("closetraining")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response closeTraining(@QueryParam("id") Long id, Training training) {
+        Training foundTraining = trainingService.findById(id);
+        if(foundTraining == null){
+            return Response.status(Response.Status.NOT_FOUND).entity("Treino não encontrado").build();
+        }
+        trainingService.closeTraining(id);//todo
+        return Response.status(Response.Status.OK).entity(training).build();
+    }
+
 
     @DELETE
     @Path("delete")

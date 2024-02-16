@@ -13,7 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -33,7 +33,7 @@ public class Training {
     private Long totalTraining;
 
     @Column(name = "dt_concluded", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    private LocalDate concludedAt;
+    private LocalDateTime concludedAt;
 
     @Column(name = "status")
     private TrainingStatus status;
@@ -48,12 +48,17 @@ public class Training {
     public Training() {
     }
 
-    public Training(Long id, String nameTraining, Long totalTraining, LocalDate concludedAt, TrainingStatus status) {
+    public Training(Long id, String nameTraining, Long totalTraining, LocalDateTime concludedAt, TrainingStatus status) {
         this.id = id;
         this.nameTraining = nameTraining;
         this.totalTraining = totalTraining;
         this.concludedAt = concludedAt;
         this.status = status;
+    }
+
+    public void closeTrainingTest() {
+        this.status = TrainingStatus.CONCLUDED;
+        this.concludedAt = LocalDateTime.now();//TODO TEST IN closeTraining service
     }
 
     public Long getId() {
@@ -80,11 +85,11 @@ public class Training {
         this.totalTraining = totalTraining;
     }
 
-    public LocalDate getConcludedAt() {
+    public LocalDateTime getConcludedAt() {
         return concludedAt;
     }
 
-    public void setConcludedAt(LocalDate concludedAt) {
+    public void setConcludedAt(LocalDateTime concludedAt) {
         this.concludedAt = concludedAt;
     }
 

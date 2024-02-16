@@ -1,6 +1,5 @@
 package br.com.nthing.training;
 
-import br.com.nthing.training.enums.TrainingStatus;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -28,7 +27,7 @@ public class TrainingService implements ITrainingService {
     public Training alterTraining(Long id, Training training) {
         Training entity = findById(id);
         if (entity == null) {
-            throw new RuntimeException("Treino não encontrado");
+            throw new RuntimeException("Treino não encontrado");//TODO MAKE EQUAL EXERCISEITEMSERVICE
         }
         persist(entity);
         return entity;
@@ -44,7 +43,9 @@ public class TrainingService implements ITrainingService {
     @Transactional
     public Training closeTraining(Long id) {
         Training training = trainingRepository.findById(id);
-        training.setStatus(TrainingStatus.CONCLUDED);
+        /*training.setStatus(TrainingStatus.CONCLUDED);
+        training.setConcludedAt(LocalDateTime.now());//TODO REVIEW*/
+        training.closeTrainingTest();
         trainingRepository.persist(training);
         return training; //TODO SUM TRAINING CONCLUDED
     }
