@@ -45,7 +45,7 @@ public class TrainingService implements ITrainingService {
         Training training = trainingRepository.findById(id);
         /*training.setStatus(TrainingStatus.CONCLUDED);
         training.setConcludedAt(LocalDateTime.now());//TODO REVIEW*/
-        training.closeTrainingTest();
+        training.concludeTraining();
         trainingRepository.persist(training);
         return training; //TODO SUM TRAINING CONCLUDED
     }

@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -40,6 +41,8 @@ public class Training {
 
     //TODO TOTAL TRAININGS CONCLUDED
 
+    private Integer totalConcludedTraining;
+
     @OneToMany(mappedBy = "training", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonbTransient
     private List<ExerciseItem> itens;
@@ -48,17 +51,29 @@ public class Training {
     public Training() {
     }
 
-    public Training(Long id, String nameTraining, Long totalTraining, LocalDateTime concludedAt, TrainingStatus status) {
+    public Training(Long id, String nameTraining, Long totalTraining, LocalDateTime concludedAt, TrainingStatus status, Integer totalConcludedTraining) {
         this.id = id;
         this.nameTraining = nameTraining;
         this.totalTraining = totalTraining;
         this.concludedAt = concludedAt;
         this.status = status;
+        this.totalConcludedTraining = totalConcludedTraining;
     }
 
-    public void closeTrainingTest() {
-        this.status = TrainingStatus.CONCLUDED;
-        this.concludedAt = LocalDateTime.now();//TODO TEST IN closeTraining service
+    public void concludeTraining() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDate today = now.toLocalDate();
+
+        if (this.status != TrainingStatus.CONCLUDED) {
+            if (this.concludedAt != null && this.concludedAt.toLocalDate().equals(today)) {
+                throw new IllegalStateException("Treino já realizado hoje!");
+            } else {
+                this.status = TrainingStatus.CONCLUDED;
+                this.concludedAt = LocalDateTime.now();//TODO TEST IN closeTraining service
+                this.totalConcludedTraining = (this.totalConcludedTraining != null ? this.totalConcludedTraining : 0) + 1;
+            }
+
+        }
     }
 
     public Long getId() {
@@ -101,6 +116,14 @@ public class Training {
         this.status = status;
     }
 
+    public Integer getTotalConcludedTraining() {
+        return totalConcludedTraining;
+    }
+
+    public void setTotalConcludedTraining(Integer totalConcludedTraining) {
+        this.totalConcludedTraining = totalConcludedTraining;
+    }
+
     public List<ExerciseItem> getItens() {
         return itens;
     }
@@ -130,9 +153,8 @@ public class Training {
                 ", totalTraining=" + totalTraining +
                 ", concludedAt=" + concludedAt +
                 ", status=" + status +
+                ", totalConcludedTraining=" + totalConcludedTraining +
                 ", itens=" + itens +
                 '}';
     }
-
-
 }
