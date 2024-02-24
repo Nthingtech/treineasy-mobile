@@ -11,6 +11,7 @@ public class ExerciseItemService implements IExerciseItemService {
     @Inject
     ExerciseItemRepository exerciseItemRepository;
 
+    @Override
     public ExerciseItem findById(Long id) {
         return exerciseItemRepository.findById(id);
     }

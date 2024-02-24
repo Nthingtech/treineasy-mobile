@@ -20,7 +20,6 @@ public class ExerciseService implements IExerciseService {
     }
 
     @Override
-    
     public Exercise alterExercise(Long id, Exercise exercise) {
         Exercise entity = findById(id);
         if (entity == null) {

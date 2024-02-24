@@ -30,6 +30,18 @@ public class ExerciseItemResource {
         return Response.ok(exerciseItems).build();
     }
 
+    @GET
+    @Path("findid")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Response findById(@QueryParam("id") Long id) {
+        ExerciseItem exerciseItem = exerciseItemService.findById(id);
+        if (exerciseItem != null) {
+            return Response.status(Response.Status.OK).entity(exerciseItem).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
+    }
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
