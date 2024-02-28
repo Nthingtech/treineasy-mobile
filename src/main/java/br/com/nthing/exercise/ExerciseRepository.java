@@ -8,9 +8,7 @@ import java.util.List;
 @ApplicationScoped
 public class ExerciseRepository implements PanacheRepository<Exercise> {
 
-
-
-
+    
     public List<Exercise> findByKeyword(String keyword) {
         return list("lower(exercise) like lower(?1) or lower(muscleGroup) like lower(?1)", "%" + keyword + "%");//Todo excluir E ALTERAR TESTES
     }
@@ -22,5 +20,4 @@ public class ExerciseRepository implements PanacheRepository<Exercise> {
     public List<Exercise> findByKeywordMuscleGroup(String keyword) {
         return list("lower(muscleGroup) like lower(?1)", "%" + keyword + "%");
     }
-    
 }
