@@ -38,7 +38,7 @@ public class Training {
 
     @Column(name = "status")
     private TrainingStatus status;
-    
+
 
     @Column(name = "tt_concluded_training")
     private Integer totalConcludedTraining;
