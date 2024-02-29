@@ -41,6 +41,7 @@ public class Training {
 
     //TODO TOTAL TRAININGS CONCLUDED
 
+    @Column(name = "tt_concluded_training")
     private Integer totalConcludedTraining;
 
     @OneToMany(mappedBy = "training", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -63,7 +64,6 @@ public class Training {
     public void concludeTraining() {
         LocalDateTime now = LocalDateTime.now();
         LocalDate today = now.toLocalDate();
-
         if (this.status != TrainingStatus.CONCLUDED) {
             if (this.concludedAt != null && this.concludedAt.toLocalDate().equals(today)) {
                 throw new IllegalStateException("Treino já realizado hoje!");
@@ -75,6 +75,8 @@ public class Training {
 
         }
     }
+
+
 
     public Long getId() {
         return id;
