@@ -38,8 +38,7 @@ public class Training {
 
     @Column(name = "status")
     private TrainingStatus status;
-
-    //TODO TOTAL TRAININGS CONCLUDED
+    
 
     @Column(name = "tt_concluded_training")
     private Integer totalConcludedTraining;
@@ -120,10 +119,6 @@ public class Training {
 
     public Integer getTotalConcludedTraining() {
         return totalConcludedTraining;
-    }
-
-    public void setTotalConcludedTraining(Integer totalConcludedTraining) {
-        this.totalConcludedTraining = totalConcludedTraining;
     }
 
     public List<ExerciseItem> getItens() {
