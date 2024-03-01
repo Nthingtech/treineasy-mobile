@@ -29,4 +29,16 @@ public class Prescription {
 
     @Column(name ="completed_workouts" )
     private Integer completedWorkouts;
+
+    public Prescription() {
+    }
+
+    public Prescription(Long id, String namePrescription, LocalDateTime concludedAt, LocalDateTime startPrescription, Integer totalPrescription, Integer completedWorkouts) {
+        this.id = id;
+        this.namePrescription = namePrescription;
+        this.concludedAt = concludedAt;
+        this.startPrescription = startPrescription;
+        this.totalPrescription = totalPrescription;
+        this.completedWorkouts = completedWorkouts;
+    }
 }
