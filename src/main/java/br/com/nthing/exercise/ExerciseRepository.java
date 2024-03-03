@@ -10,7 +10,7 @@ public class ExerciseRepository implements PanacheRepository<Exercise> {
 
 
     public List<Exercise> findByKeyword(String keyword) {
-        return list("lower(exercise) like lower(?1) or lower(muscleGroup) like lower(?1)", "%" + keyword + "%");//Todo excluir E ALTERAR TESTES
+        return list("lower(exercise) like lower(?1) or lower(muscleGroup) like lower(?1)", "%" + keyword + "%");
     }
 
     public List<Exercise> findByKeywordExercise(String keyword) {
