@@ -20,4 +20,6 @@ public class ExerciseRepository implements PanacheRepository<Exercise> {
     public List<Exercise> findByKeywordMuscleGroup(String keyword) {
         return list("lower(muscleGroup) like lower(?1)", "%" + keyword + "%");
     }
+
+    public int updateParamRoot (Long)
 }
