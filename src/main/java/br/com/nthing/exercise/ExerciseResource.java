@@ -97,12 +97,12 @@ public class ExerciseResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public Response updateExercise(@QueryParam("id") Long id, Exercise exercise) {
-       Exercise foundExercise = exerciseService.findById(id);
-       if (foundExercise == null){
-           return Response.status(Response.Status.NOT_FOUND).entity("Exercício não encontrado").build();
-       }
-       exerciseService.alterExercise(id, exercise);
-       return Response.status(Response.Status.OK).entity(exercise).build();
+        Exercise foundExercise = exerciseService.findById(id);
+        if (foundExercise == null){
+            return Response.status(Response.Status.NOT_FOUND).entity("Exercício não encontrado").build();
+        }
+        exerciseService.updateExercise(exercise);
+        return Response.status(Response.Status.OK).entity(exercise).build();
     }
 
    @DELETE

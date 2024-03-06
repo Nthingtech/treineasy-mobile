@@ -20,21 +20,9 @@ public class ExerciseService implements IExerciseService {
     }
 
     @Override
-    public Exercise alterExercise(Long id, Exercise exercise) {
-        Exercise entity = findById(id);
-        if (entity == null) {
-            throw new RuntimeException("Exercício não encontrado");
-        }
-
-        entity.setExercise(exercise.getExercise());
-        entity.setMachineNumber(exercise.getMachineNumber());
-        entity.setMuscleGroup(exercise.getMuscleGroup());
-        entity.setVideoUri(exercise.getVideoUri());
-        exerciseRepository.persist(entity);
-        return entity;
+    public void updateExercise (Exercise exercise) {
+        exerciseRepository.updateParamRootExercise(exercise);
     }
-
-
 
     @Override
     public void deleteExercise(Long id) {
@@ -60,8 +48,7 @@ public class ExerciseService implements IExerciseService {
     public List<Exercise> searchByKeywordMuscleGroup(String keymusc) {
         return exerciseRepository.findByKeywordMuscleGroup(keymusc);
     }
-
-
+    
     @Override
     public List<Exercise> getByKeyword(String keyword) {
         return exerciseRepository.findByKeyword(keyword);
