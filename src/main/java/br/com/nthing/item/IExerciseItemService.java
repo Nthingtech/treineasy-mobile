@@ -8,7 +8,7 @@ public interface IExerciseItemService {
 
     ExerciseItem insertItem(ExerciseItem newItem);
 
-    ExerciseItem updateItem(Long id, ExerciseItem update);
+    void updateItem(ExerciseItem exerciseItem);
 
     void deleteItem(Long idSequence);
 

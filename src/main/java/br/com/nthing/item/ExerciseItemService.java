@@ -23,21 +23,11 @@ public class ExerciseItemService implements IExerciseItemService {
     }
 
     @Override
-    public ExerciseItem updateItem(Long id, ExerciseItem update) {
-        ExerciseItem entity = findById(id);
-        if (entity == null) {
-            throw new RuntimeException("Exercício não encontrado");
-        }
-
-        //entity.setIdSequence(update.getIdSequence());
-        entity.setSeriesNumber(update.getSeriesNumber());
-        entity.setMeasurementType(update.getMeasurementType());
-        entity.setRest(update.getRest());
-        entity.setConcluded(update.getConcluded());
-        entity.setNote(update.getNote());
-        exerciseItemRepository.persist(entity);
-        return update;
+    public void updateItem(ExerciseItem exerciseItem) {
+        exerciseItemRepository.updateExerciseItem(exerciseItem);
     }
+
+
 
     @Override
     public void deleteItem(Long idSequence) {

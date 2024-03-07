@@ -65,7 +65,7 @@ public class ExerciseItemResource {
         if (exItem == null) {
             return Response.status(Response.Status.NOT_FOUND).entity("Exercício não encontrado").build();
         }
-        exerciseItemService.updateItem(idSequence, exerciseItem);
+        exerciseItemService.updateItem(exerciseItem);
         return Response.status(Response.Status.OK).entity(exerciseItem).build();
     }
 

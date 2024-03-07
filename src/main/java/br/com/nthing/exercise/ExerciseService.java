@@ -48,7 +48,7 @@ public class ExerciseService implements IExerciseService {
     public List<Exercise> searchByKeywordMuscleGroup(String keymusc) {
         return exerciseRepository.findByKeywordMuscleGroup(keymusc);
     }
-    
+
     @Override
     public List<Exercise> getByKeyword(String keyword) {
         return exerciseRepository.findByKeyword(keyword);

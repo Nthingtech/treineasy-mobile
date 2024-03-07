@@ -97,7 +97,8 @@ public class ExerciseResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public Response updateExercise(@QueryParam("id") Long id, Exercise exercise) {
-        Exercise foundExercise = exerciseService.findById(id);
+       exercise.setId(id);
+       Exercise foundExercise = exerciseService.findById(id);
         if (foundExercise == null){
             return Response.status(Response.Status.NOT_FOUND).entity("Exercício não encontrado").build();
         }
