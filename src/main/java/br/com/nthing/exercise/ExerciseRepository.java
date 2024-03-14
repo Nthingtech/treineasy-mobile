@@ -30,4 +30,7 @@ public class ExerciseRepository implements PanacheRepository<Exercise> {
                         .and("videoUri", exercise.getVideoUri())
                         .and("id", exercise.getId()));
     }
+
+
+
 }
