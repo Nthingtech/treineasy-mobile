@@ -12,7 +12,7 @@ import jakarta.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-@Table( name = "tbl_exercise")
+@Table(name = "tbl_exercise")
 @ApplicationScoped
 public class Exercise {
 
