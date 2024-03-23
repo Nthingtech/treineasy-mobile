@@ -111,7 +111,7 @@ public class ExerciseResource {
    @Transactional
    public Response deleteExercise(@QueryParam("id") Long id) {
         exerciseService.deleteExercise(id);
-        return Response.status(Response.Status.NO_CONTENT).build();
+        return Response.status(Response.Status.OK).build();
    }
 
 }

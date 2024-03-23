@@ -20,7 +20,7 @@ public class ExerciseService implements IExerciseService {
     }
 
     @Override
-    public void updateExercise (Exercise exercise) {
+    public void updateExercise(Exercise exercise) {
         exerciseRepository.updateParamRootExercise(exercise);
     }
 
