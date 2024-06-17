@@ -2,6 +2,7 @@ package br.com.nthing.exercise;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import io.quarkus.panache.common.Parameters;
+import io.smallrye.common.constraint.NotNull;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class ExerciseRepository implements PanacheRepository<Exercise> {
         return list("lower(muscleGroup) like lower(?1)", "%" + keyword + "%");
     }
 
-    public int updateParamRootExercise(Exercise exercise) { //TODO TEST UPDATE
+    public int updateParamRootExercise(@NotNull Exercise exercise) {
         return update("UPDATE Exercise e SET e.exercise = :exercise, e.machineNumber = :machineNumber, e.muscleGroup = :muscleGroup, e.videoUri = :videoUri WHERE e.id = :id",
                 Parameters.with("exercise", exercise.getExercise())
                         .and("machineNumber", exercise.getMachineNumber())

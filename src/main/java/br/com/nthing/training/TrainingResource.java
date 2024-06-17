@@ -84,7 +84,7 @@ public class TrainingResource {
         if(foundTraining == null) {
             return Response.status(Response.Status.NOT_FOUND).entity("Treino não encontrado").build();
         }
-        trainingService.closeTraining(id);//todo
+        trainingService.closeTraining(id);
         return Response.status(Response.Status.OK).entity(training).build();
 
     }

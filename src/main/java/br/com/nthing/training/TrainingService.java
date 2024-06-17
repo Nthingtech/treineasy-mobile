@@ -1,9 +1,12 @@
 package br.com.nthing.training;
 
+import br.com.nthing.training.enums.TrainingStatus;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static io.quarkus.hibernate.orm.panache.PanacheEntityBase.persist;
@@ -43,9 +46,26 @@ public class TrainingService implements ITrainingService {
     @Transactional
     public Training closeTraining(Long id) {
         Training training = trainingRepository.findById(id);
+        if (training == null) {
+           throw new RuntimeException("Treino não encontrado");
+        }
+
+        LocalDateTime now = LocalDateTime.now();
+        LocalDate today = now.toLocalDate();
+
+        if (training.getStatus() != TrainingStatus.CONCLUDED) {
+            if (training.getConcludedAt() != null && training.getConcludedAt().toLocalDate().equals(today)) {
+                throw new IllegalStateException("Treino já realizado hoje!");
+            } else {
+                training.setStatus(TrainingStatus.CONCLUDED);
+                training.setConcludedAt(now);
+                training.setTotalConcludedTraining((training.getTotalConcludedTraining() != null ? training.getTotalConcludedTraining() : 0) + 1);
+            }
+
+        }
         /*training.setStatus(TrainingStatus.CONCLUDED);
-        training.setConcludedAt(LocalDateTime.now());//TODO REVIEW*/
-        training.concludeTraining();
+        training.setConcludedAt(LocalDateTime.now());
+        training.concludeTraining();*/
         trainingRepository.persist(training);
         return training; //TODO SUM TRAINING CONCLUDED
     }

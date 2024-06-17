@@ -13,7 +13,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -60,20 +59,6 @@ public class Training {
         this.totalConcludedTraining = totalConcludedTraining;
     }
 
-    public void concludeTraining() {
-        LocalDateTime now = LocalDateTime.now();
-        LocalDate today = now.toLocalDate();
-        if (this.status != TrainingStatus.CONCLUDED) {
-            if (this.concludedAt != null && this.concludedAt.toLocalDate().equals(today)) {
-                throw new IllegalStateException("Treino já realizado hoje!");
-            } else {
-                this.status = TrainingStatus.CONCLUDED;
-                this.concludedAt = LocalDateTime.now();//TODO TEST IN closeTraining service
-                this.totalConcludedTraining = (this.totalConcludedTraining != null ? this.totalConcludedTraining : 0) + 1;
-            }
-
-        }
-    }
 
 
 
@@ -119,6 +104,10 @@ public class Training {
 
     public Integer getTotalConcludedTraining() {
         return totalConcludedTraining;
+    }
+
+    public void setTotalConcludedTraining(Integer totalConcludedTraining) {
+        this.totalConcludedTraining = totalConcludedTraining;
     }
 
     public List<ExerciseItem> getItens() {

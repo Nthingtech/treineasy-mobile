@@ -39,4 +39,3 @@ public class ExerciseItemService implements IExerciseItemService {
         return exerciseItemRepository.listAll();
     }
 }
-//TODO REFACTOR METHODS
