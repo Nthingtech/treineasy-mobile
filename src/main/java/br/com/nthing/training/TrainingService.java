@@ -63,9 +63,6 @@ public class TrainingService implements ITrainingService {
             }
 
         }
-        /*training.setStatus(TrainingStatus.CONCLUDED);
-        training.setConcludedAt(LocalDateTime.now());
-        training.concludeTraining();*/
         trainingRepository.persist(training);
         return training; //TODO SUM TRAINING CONCLUDED
     }
