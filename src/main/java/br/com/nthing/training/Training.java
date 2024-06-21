@@ -1,6 +1,7 @@
 package br.com.nthing.training;
 
 import br.com.nthing.item.ExerciseItem;
+import br.com.nthing.prescription.Prescription;
 import br.com.nthing.training.enums.TrainingStatus;
 import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.CascadeType;
@@ -10,6 +11,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -30,7 +33,7 @@ public class Training {
     private String nameTraining;
 
     @Column(name = "total_training")
-    private Long totalTraining;
+    private Integer totalTraining;
 
     @Column(name = "dt_concluded", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private LocalDateTime concludedAt;
@@ -46,17 +49,23 @@ public class Training {
     @JsonbTransient
     private List<ExerciseItem> itens;
 
+    @ManyToOne
+    @JoinColumn(name = "tbl_prescription_id_prescription")
+    private Prescription prescription;
+
 
     public Training() {
     }
 
-    public Training(Long id, String nameTraining, Long totalTraining, LocalDateTime concludedAt, TrainingStatus status, Integer totalConcludedTraining) {
+    public Training(Long id, String nameTraining, Integer totalTraining, LocalDateTime concludedAt
+            , TrainingStatus status, Integer totalConcludedTraining, Prescription prescription) {
         this.id = id;
         this.nameTraining = nameTraining;
         this.totalTraining = totalTraining;
         this.concludedAt = concludedAt;
         this.status = status;
         this.totalConcludedTraining = totalConcludedTraining;
+        this.prescription = prescription;
     }
 
 
@@ -78,11 +87,11 @@ public class Training {
         this.nameTraining = nameTraining;
     }
 
-    public Long getTotalTraining() {
+    public Integer getTotalTraining() {
         return totalTraining;
     }
 
-    public void setTotalTraining(Long totalTraining) {
+    public void setTotalTraining(Integer totalTraining) {
         this.totalTraining = totalTraining;
     }
 
@@ -108,6 +117,14 @@ public class Training {
 
     public void setTotalConcludedTraining(Integer totalConcludedTraining) {
         this.totalConcludedTraining = totalConcludedTraining;
+    }
+
+    public Prescription getPrescription() {
+        return prescription;
+    }
+
+    public void setPrescription(Prescription prescription) {
+        this.prescription = prescription;
     }
 
     public List<ExerciseItem> getItens() {

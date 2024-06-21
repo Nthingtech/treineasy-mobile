@@ -9,8 +9,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static io.quarkus.hibernate.orm.panache.PanacheEntityBase.persist;
-
 
 @ApplicationScoped
 public class TrainingService implements ITrainingService {
@@ -27,13 +25,8 @@ public class TrainingService implements ITrainingService {
 
     @Override
     @Transactional
-    public Training alterTraining(Long id, Training training) {
-        Training entity = findById(id);
-        if (entity == null) {
-            throw new RuntimeException("Treino não encontrado");//TODO MAKE EQUAL EXERCISEITEMSERVICE
-        }
-        persist(entity);
-        return entity;
+    public void alterTraining(Training training) {
+        trainingRepository.updateTrainingRepository(training);
     }
 
     @Override
@@ -66,6 +59,7 @@ public class TrainingService implements ITrainingService {
         trainingRepository.persist(training);
         return training; //TODO SUM TRAINING CONCLUDED
     }
+
 
     @Override
     @Transactional

@@ -1,6 +1,5 @@
 package br.com.nthing.exercise;
 
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +12,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tbl_exercise")
-@ApplicationScoped
+//@ApplicationScoped
 public class Exercise {
 
     @Id

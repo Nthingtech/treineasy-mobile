@@ -38,11 +38,11 @@ public class ExerciseItem {
     private String note;
 
     @ManyToOne
-    @JoinColumn(name = "tbl_training_id_training") //maybe lazy
+    @JoinColumn(name = "tbl_training_id_training")
     private Training training;
 
     @ManyToOne
-    @JoinColumn(name = "tbl_exercise_id_exercise")//maybe lazy
+    @JoinColumn(name = "tbl_exercise_id_exercise")
     private Exercise exercise;
 
     public ExerciseItem() {

@@ -5,7 +5,7 @@ import java.util.List;
 public interface ITrainingService {
 
     Training createNewTraining(Training trai);
-    Training alterTraining(Long id, Training trai);
+    void alterTraining(Training trai);
 
     void deleteTraining(Long id);
     Training closeTraining(Long id);

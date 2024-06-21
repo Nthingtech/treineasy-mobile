@@ -13,6 +13,8 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Path("trainings")
@@ -67,11 +69,12 @@ public class TrainingResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateTraining(@QueryParam("id") Long id, Training training) {
+        training.setId(id);
         Training foundTraining = trainingService.findById(id);
-        if(foundTraining == null){
+        if (foundTraining == null){
             return Response.status(Response.Status.NOT_FOUND).entity("Treino não encontrado").build();
         }
-        trainingService.alterTraining(id,training);
+        trainingService.alterTraining(training);
         return Response.status(Response.Status.OK).entity(training).build();
     }
 
@@ -84,6 +87,14 @@ public class TrainingResource {
         if(foundTraining == null) {
             return Response.status(Response.Status.NOT_FOUND).entity("Treino não encontrado").build();
         }
+
+        LocalDateTime now = LocalDateTime.now();
+        LocalDate today = now.toLocalDate();
+
+        if (foundTraining.getConcludedAt() != null && foundTraining.getConcludedAt().toLocalDate().equals(today)) {
+            return Response.status(Response.Status.FORBIDDEN).entity("Treino já realizado hoje!").build();
+        }
+
         trainingService.closeTraining(id);
         return Response.status(Response.Status.OK).entity(training).build();
 
