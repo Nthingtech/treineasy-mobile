@@ -50,7 +50,7 @@ public class TrainingResource {
         if (training != null) {
             return Response.status(Response.Status.OK).entity(training).build();
         }
-        return  Response.status(Response.Status.NOT_FOUND).build();
+        return Response.status(Response.Status.NOT_FOUND).build();
     }
 
     @POST

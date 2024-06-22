@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,17 +26,21 @@ public class Prescription {
     @Column(name = "id_prescription")
     private Long id;
 
-    @Column(name = "name_prescription", length = 20, nullable = false)
+    @Column(name = "name_prescription", length = 20, nullable = true)
     private String namePrescription;
 
-    @Column(name = "conclude_at", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE", nullable = false)
+    @Column(name = "conclude_at", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE", nullable = true)
     private LocalDateTime concludedAt;
 
     @CreationTimestamp
-    @Column(name = "start_prescription", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE", nullable = false)
+    @Column(name = "start_prescription", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE", nullable = true)
     private LocalDateTime startPrescription;
 
-    @Column(name = "total_prescription", nullable = false)
+    @UpdateTimestamp
+    @Column(name = "update_prescription", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE", nullable = true)
+    private LocalDateTime updatePrescription;
+
+    @Column(name = "total_prescription", nullable = true)
     private Integer totalPrescription;
 
     @Column(name ="completed_workouts" )
@@ -52,11 +57,12 @@ public class Prescription {
     public Prescription() {
     }
 
-    public Prescription(Long id, String namePrescription, LocalDateTime concludedAt, LocalDateTime startPrescription, Integer totalPrescription, Integer completedWorkouts) {
+    public Prescription(Long id, String namePrescription, LocalDateTime concludedAt, LocalDateTime startPrescription, LocalDateTime updatePrescription, Integer totalPrescription, Integer completedWorkouts) {
         this.id = id;
         this.namePrescription = namePrescription;
         this.concludedAt = concludedAt;
         this.startPrescription = startPrescription;
+        this.updatePrescription = updatePrescription;
         this.totalPrescription = totalPrescription;
         this.completedWorkouts = completedWorkouts;
     }
@@ -91,6 +97,14 @@ public class Prescription {
 
     public void setStartPrescription(LocalDateTime startPrescription) {
         this.startPrescription = startPrescription;
+    }
+
+    public LocalDateTime getUpdatePrescription() {
+        return updatePrescription;
+    }
+
+    public void setUpdatePrescription(LocalDateTime updatePrescription) {
+        this.updatePrescription = updatePrescription;
     }
 
     public Integer getTotalPrescription() {
@@ -137,8 +151,10 @@ public class Prescription {
                 ", namePrescription='" + namePrescription + '\'' +
                 ", concludedAt=" + concludedAt +
                 ", startPrescription=" + startPrescription +
+                ", updatePrescription=" + updatePrescription +
                 ", totalPrescription=" + totalPrescription +
                 ", completedWorkouts=" + completedWorkouts +
+                ", trainings=" + trainings +
                 '}';
     }
 }
