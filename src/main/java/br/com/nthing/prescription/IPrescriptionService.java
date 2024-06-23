@@ -12,7 +12,10 @@ public interface IPrescriptionService {
 
     void deletePrescription(Long idSequence);
 
-    void totalPrescription(Prescription prescription);
+//    void totalPrescription(Prescription prescription); TODO TEST SUM TOTAL
 
     List<Prescription> listAll();
+
+
+    List<Prescription> searchByKeywordPrescription(String keypresc);
 }

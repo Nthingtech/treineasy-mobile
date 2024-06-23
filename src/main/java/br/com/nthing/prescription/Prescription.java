@@ -107,7 +107,7 @@ public class Prescription {
         this.updatePrescription = updatePrescription;
     }
 
-    public Integer getTotalPrescription() {
+    public Integer getTotalPrescription(List<Training> trainings) {
         return totalPrescription;
     }
 

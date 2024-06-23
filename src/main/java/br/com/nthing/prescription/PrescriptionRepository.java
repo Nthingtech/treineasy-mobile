@@ -14,7 +14,7 @@ public class PrescriptionRepository implements PanacheRepository<Prescription> {
     }
 
     public int updatePrescritption(Prescription prescription) {
-        return update("UPDATE Prescription p SET p.namePrescription = :namePrescription, WHERE p.id = :id",
+        return update("UPDATE Prescription p SET p.namePrescription = :namePrescription WHERE p.id = :id",
                 Parameters.with("namePrescription", prescription.getNamePrescription())
                         .and("id", prescription.getId()));
     }

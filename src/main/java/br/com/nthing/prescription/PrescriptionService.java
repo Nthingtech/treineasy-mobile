@@ -1,11 +1,7 @@
 package br.com.nthing.prescription;
 
-import br.com.nthing.training.Training;
-import br.com.nthing.training.TrainingRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
 import jakarta.transaction.Transactional;
 
 import java.util.List;
@@ -16,10 +12,6 @@ public class PrescriptionService implements IPrescriptionService {
 
     @Inject
     PrescriptionRepository prescriptionRepository;
-
-    @Inject
-    TrainingRepository trainingRepository;
-
 
     @Override
     @Transactional
@@ -35,16 +27,18 @@ public class PrescriptionService implements IPrescriptionService {
     }
 
     @Override
+    @Transactional
     public void updatePrescription(Prescription prescription) {
-
+        prescriptionRepository.updatePrescritption(prescription);
     }
 
+    @Transactional
     @Override
-    public void deletePrescription(Long idSequence) {
-
+    public void deletePrescription(Long id) {
+        prescriptionRepository.deleteById(id);
     }
 
-    @PrePersist //TODO
+   /* @PrePersist //TODO
     @PreUpdate
     @Transactional
     @Override
@@ -52,12 +46,21 @@ public class PrescriptionService implements IPrescriptionService {
         int totalTraining = prescription.getTrainings().stream()
                 .mapToInt(Training::getTotalTraining)
                 .sum();
-        prescription.setTotalPrescription(totalTraining);
+        prescription.setTotalPrescription(totalTraining); //TODO COMMIT FOR TEST IN ENTITY
+    }*/
+
+    @Override
+    @Transactional
+    public List<Prescription> listAll() {
+        return prescriptionRepository.listAll();
     }
 
     @Override
-    public List<Prescription> listAll() {
-        return List.of();
+    @Transactional
+    public List<Prescription> searchByKeywordPrescription(String keypresc) {
+        return prescriptionRepository.findKeywordPrescription(keypresc);
     }
+
+
 
 }
