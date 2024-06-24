@@ -38,16 +38,6 @@ public class PrescriptionService implements IPrescriptionService {
         prescriptionRepository.deleteById(id);
     }
 
-   /* @PrePersist //TODO
-    @PreUpdate
-    @Transactional
-    @Override
-    public void totalPrescription(Prescription prescription) {
-        int totalTraining = prescription.getTrainings().stream()
-                .mapToInt(Training::getTotalTraining)
-                .sum();
-        prescription.setTotalPrescription(totalTraining); //TODO COMMIT FOR TEST IN ENTITY
-    }*/
 
     @Override
     @Transactional

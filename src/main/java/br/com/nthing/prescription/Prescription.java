@@ -52,9 +52,8 @@ public class Prescription {
     private List<Training> trainings;
 
 
-
-
     public Prescription() {
+
     }
 
     public Prescription(Long id, String namePrescription, LocalDateTime concludedAt, LocalDateTime startPrescription, LocalDateTime updatePrescription, Integer totalPrescription, Integer completedWorkouts) {
@@ -107,7 +106,7 @@ public class Prescription {
         this.updatePrescription = updatePrescription;
     }
 
-    public Integer getTotalPrescription(List<Training> trainings) {
+    public Integer getTotalPrescription() {
         return totalPrescription;
     }
 
@@ -130,6 +129,7 @@ public class Prescription {
     public void setTrainings(List<Training> trainings) {
         this.trainings = trainings;
     }
+
 
     @Override
     public boolean equals(Object o) {

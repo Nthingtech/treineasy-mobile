@@ -54,6 +54,7 @@ public class Training {
     private Prescription prescription;
 
 
+
     public Training() {
     }
 
