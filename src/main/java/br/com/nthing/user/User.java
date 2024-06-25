@@ -2,6 +2,7 @@ package br.com.nthing.user;
 
 
 import jakarta.persistence.Embedded;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -22,7 +23,12 @@ public abstract class User {
 
     @Embedded
     private Address address;
-    //TODO Embeddable phone
+
+    @Embedded
+    private Phone phone;
+
+    @Email(regexp = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@a-zA-Z0-9?(?:\\\\.a-zA-Z0-9?)*$/")
+    private String email;
 
 
 
