@@ -8,7 +8,6 @@ public interface IExerciseService {
      void updateExercise(Exercise exercise);
      void deleteExercise(Long id);
      Exercise findById(Long id);
-     /*Exercise findByExercise(String exercise);*/
      List<Exercise> listAll();
      List<Exercise> searchByKeywordExercise(String key);
      List<Exercise> searchByKeywordMuscleGroup(String key);

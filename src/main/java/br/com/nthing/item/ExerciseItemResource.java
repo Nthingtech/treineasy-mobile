@@ -25,7 +25,7 @@ public class ExerciseItemResource {
     @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public Response get(){
+    public Response get() {
         List<ExerciseItem> exerciseItems = exerciseItemService.listAll();
         return Response.ok(exerciseItems).build();
     }
@@ -40,7 +40,9 @@ public class ExerciseItemResource {
             return Response.status(Response.Status.OK).entity(exerciseItem).build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();
+
     }
+
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -72,7 +74,7 @@ public class ExerciseItemResource {
     @DELETE
     @Path("delete")
     @Transactional
-    public Response deleteExerciseItem(@QueryParam("idSequence")Long idSequence) {
+    public Response deleteExerciseItem(@QueryParam("idSequence") Long idSequence) {
         exerciseItemService.deleteItem(idSequence);
         return Response.status(Response.Status.NO_CONTENT).build();
     }

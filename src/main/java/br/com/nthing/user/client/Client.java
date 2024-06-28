@@ -1,5 +1,10 @@
-package br.com.nthing.user;
+package br.com.nthing.user.client;
 
+import br.com.nthing.user.Address;
+import br.com.nthing.user.Gender;
+import br.com.nthing.user.Phone;
+import br.com.nthing.user.User;
+import br.com.nthing.user.UserName;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,16 +20,19 @@ import java.util.Objects;
 @Entity
 @Table(name = "tbl_user")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Client extends User{
+public class Client extends User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_client")
     private Long id;
 
-    public Client(UserName name, LocalDateTime birthday, String cpf, Address address, Phone phone, String email, Gender gender, Long id) {
+    private String instagram;
+
+    public Client(UserName name, LocalDateTime birthday, String cpf, Address address, Phone phone, String email, Gender gender, Long id, String instagram) {
         super(name, birthday, cpf, address, phone, email, gender);
         this.id = id;
+        this.instagram = instagram;
     }
 
     public Long getId() {
@@ -33,6 +41,14 @@ public class Client extends User{
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getInstagram() {
+        return instagram;
+    }
+
+    public void setInstagram(String instagram) {
+        this.instagram = instagram;
     }
 
     @Override
@@ -52,6 +68,7 @@ public class Client extends User{
     public String toString() {
         return "Client{" +
                 "id=" + id +
+                ", instagram='" + instagram + '\'' +
                 ", name=" + name +
                 ", birthday=" + birthday +
                 ", cpf='" + cpf + '\'' +
