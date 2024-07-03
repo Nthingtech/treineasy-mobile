@@ -44,8 +44,11 @@ public class ClientService implements IClientService {
 
     @Override
     public List<Client> searchByKeywordClient(String key) {
-        return List.of();
+        return clientRepository.findByFirstOrLast(key); //todo test method first or lastname
     }
+
+
+
 
     @Override
     public List<Client> searchByBirthday(String key) {
