@@ -29,6 +29,10 @@ public class Client extends User {
 
     private String instagram;
 
+    public Client() {
+
+    }
+
     public Client(UserName name, LocalDateTime birthday, String cpf, Address address, Phone phone, String email, Gender gender, Long id, String instagram) {
         super(name, birthday, cpf, address, phone, email, gender);
         this.id = id;

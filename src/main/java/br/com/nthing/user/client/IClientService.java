@@ -10,6 +10,8 @@ public interface IClientService {
     Client findById(Long id);
     List<Client> listAll();
     List<Client> searchByKeywordClient(String key);
+
+
     List<Client> searchByBirthday(String key);
 
 

@@ -23,7 +23,7 @@ public abstract class User {
     @Column(name = "birthday", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     protected LocalDateTime birthday;
 
-    @CPF(message = "CPF inválido!")
+    @CPF
     @Pattern(regexp = "\\d+", message = "O campo deve conter apenas dígitos numéricos.")
     @Column(name = "cpf")
     protected String cpf;
@@ -36,7 +36,7 @@ public abstract class User {
     @Column(name = "phone")
     protected Phone phone;
 
-    @Email(regexp = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@a-zA-Z0-9?(?:\\\\.a-zA-Z0-9?)*$/")
+    @Email
     @Column(name = "email")
     protected String email;
 
@@ -77,11 +77,11 @@ public abstract class User {
         this.birthday = birthday;
     }
 
-    public @CPF(message = "CPF inválido!") @Pattern(regexp = "\\d+", message = "O campo deve conter apenas dígitos numéricos.") String getCpf() {
+    public @CPF @Pattern(regexp = "\\d+", message = "O campo deve conter apenas dígitos numéricos.") String getCpf() {
         return cpf;
     }
 
-    public void setCpf(@CPF(message = "CPF inválido!") @Pattern(regexp = "\\d+", message = "O campo deve conter apenas dígitos numéricos.") String cpf) {
+    public void setCpf(@CPF @Pattern(regexp = "\\d+", message = "O campo deve conter apenas dígitos numéricos.") String cpf) {
         this.cpf = cpf;
     }
 
@@ -101,11 +101,11 @@ public abstract class User {
         this.phone = phone;
     }
 
-    public @Email(regexp = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@a-zA-Z0-9?(?:\\\\.a-zA-Z0-9?)*$/") String getEmail() {
+    public @Email String getEmail() {
         return email;
     }
 
-    public void setEmail(@Email(regexp = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@a-zA-Z0-9?(?:\\\\.a-zA-Z0-9?)*$/") String email) {
+    public void setEmail(@Email String email) {
         this.email = email;
     }
 
