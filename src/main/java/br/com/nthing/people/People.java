@@ -10,6 +10,6 @@ public abstract class People {
     private String country;
     private String state;
     private String district;
-    
+
 
 }
