@@ -3,7 +3,7 @@ package br.com.nthing.training;
 import br.com.nthing.item.ExerciseItem;
 import br.com.nthing.prescription.Prescription;
 import br.com.nthing.training.enums.TrainingStatus;
-import jakarta.json.bind.annotation.JsonbTransient;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -46,7 +46,7 @@ public class Training {
     private Integer totalConcludedTraining;
 
     @OneToMany(mappedBy = "training", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonbTransient
+    @JsonIgnoreProperties("training")
     private List<ExerciseItem> itens;
 
     @ManyToOne

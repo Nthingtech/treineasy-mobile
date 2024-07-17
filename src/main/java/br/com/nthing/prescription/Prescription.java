@@ -1,7 +1,7 @@
 package br.com.nthing.prescription;
 
 import br.com.nthing.training.Training;
-import jakarta.json.bind.annotation.JsonbTransient;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -48,7 +48,7 @@ public class Prescription {
 
 
     @OneToMany(mappedBy = "prescription", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonbTransient
+    @JsonIgnoreProperties("prescription")
     private List<Training> trainings;
 
 
