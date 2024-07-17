@@ -24,7 +24,7 @@ public class ClientService implements IClientService {
 
     @Override
     public void updateClient(Client client) {
-
+        clientRepository.updateClient(client);
     }
 
     @Override

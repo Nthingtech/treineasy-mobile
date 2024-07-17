@@ -10,6 +10,7 @@ import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -69,8 +70,17 @@ public class ClientResource {
     }
 
     @PUT
-    public Response updateClient() { //TODO
-        return null;
+    @Path("update")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Response updateClient(@QueryParam("id") Long id, Client client) {
+        Client foundClient = clientService.findById(id); //TODO
+        if (foundClient == null) {
+            return Response.status(Response.Status.NOT_FOUND).entity("Client não encontrado").build();
+        }
+        clientService.updateClient(client);
+        return Response.status(Response.Status.OK).entity(client).build();
     }
 
     @DELETE
