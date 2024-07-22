@@ -69,6 +69,17 @@ public class ClientResource {
         return Response.status(Response.Status.BAD_REQUEST).build();
     }
 
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    @Path("clients1")
+    public Response createClient(ClientDTO clientDTO){
+        ClientDTO createClientDto = clientService.createClient(clientDTO);
+        return Response.status(Response.Status.CREATED).entity(createClientDto).build();
+    }
+
+
     @PUT
     @Path("update")
     @Consumes(MediaType.APPLICATION_JSON)

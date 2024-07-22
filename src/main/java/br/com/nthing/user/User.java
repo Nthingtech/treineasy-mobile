@@ -10,6 +10,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.br.CPF;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
@@ -21,7 +22,7 @@ public abstract class User {
     protected UserName name;
 
     @Column(name = "birthday", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    protected LocalDateTime birthday;
+    protected LocalDate birthday;
 
     @CPF
     @Pattern(regexp = "\\d+", message = "O campo deve conter apenas dígitos numéricos.")
@@ -45,13 +46,13 @@ public abstract class User {
     protected Gender gender;
 
     @Column(name = "dt_register", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    protected final LocalDateTime dtRegister = LocalDateTime.now();
+    protected LocalDateTime dtRegister = LocalDateTime.now();
 
 
     public User() {
     }
 
-    public User(UserName name, LocalDateTime birthday, String cpf, Address address, Phone phone, String email, Gender gender) {
+    public User(UserName name, LocalDate birthday, String cpf, Address address, Phone phone, String email, Gender gender, LocalDateTime dtRegister) {
         this.name = name;
         this.birthday = birthday;
         this.cpf = cpf;
@@ -59,7 +60,9 @@ public abstract class User {
         this.phone = phone;
         this.email = email;
         this.gender = gender;
+        this.dtRegister = dtRegister;
     }
+
 
     public UserName getName() {
         return name;
@@ -69,11 +72,11 @@ public abstract class User {
         this.name = name;
     }
 
-    public LocalDateTime getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(LocalDateTime birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
@@ -131,6 +134,7 @@ public abstract class User {
                 ", phone=" + phone +
                 ", email='" + email + '\'' +
                 ", gender=" + gender +
+                ", dtRegister=" + dtRegister +
                 '}';
     }
 }

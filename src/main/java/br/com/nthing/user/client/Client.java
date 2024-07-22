@@ -14,6 +14,7 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -33,8 +34,9 @@ public class Client extends User {
 
     }
 
-    public Client(UserName name, LocalDateTime birthday, String cpf, Address address, Phone phone, String email, Gender gender, Long id, String instagram) {
-        super(name, birthday, cpf, address, phone, email, gender);
+
+    public Client(UserName name, LocalDate birthday, String cpf, Address address, Phone phone, String email, Gender gender, LocalDateTime dtRegister, Long id, String instagram) {
+        super(name, birthday, cpf, address, phone, email, gender, dtRegister);
         this.id = id;
         this.instagram = instagram;
     }

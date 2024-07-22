@@ -6,12 +6,14 @@ import jakarta.inject.Inject;
 import java.util.List;
 
 @ApplicationScoped
-public class ClientService implements IClientService {
+public class ClientService {
 
     @Inject
     private ClientRepository clientRepository;
 
-    @Override
+    @Inject
+    ClientMapper clientMapper;
+
     public Client createNewClient(Client cli) {
 
         if (cli.getName() == null || cli.getName().getFirstName().isEmpty() || cli.getName().getLastName().isEmpty()) {
@@ -22,35 +24,33 @@ public class ClientService implements IClientService {
         return cli;
     }
 
-    @Override
     public void updateClient(Client client) {
         clientRepository.updateClient(client);
     }
 
-    @Override
     public void deleteClient(Long id) {
         clientRepository.deleteById(id);
     }
 
-    @Override
     public Client findById(Long id) {
         return clientRepository.findById(id);
     }
 
-    @Override
     public List<Client> listAll() {
         return clientRepository.listAll();
     }
 
-    @Override
     public List<Client> searchByKeywordClient(String key) {
         return clientRepository.findByFirstOrLast(key); //todo test method first or lastname
     }
 
+    public ClientDTO createClient(ClientDTO clientDTO) {
+        Client client = this.clientMapper.toEntity(clientDTO);
+        clientRepository.persist(client);
+        return this.clientMapper.toDto(client);
+    }
 
 
-
-    @Override
     public List<Client> searchByBirthday(String key) {
         return List.of();
     }
