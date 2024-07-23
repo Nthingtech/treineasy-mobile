@@ -24,7 +24,8 @@ public class ClientService {
         return cli;
     }TODO DELETE*/
 
-    public void updateClient(Client client) {
+    public void updateClient(ClientDTO clientDTO) {
+        Client client = this.clientMapper.toEntity(clientDTO);
         clientRepository.updateClient(client);
     }
 
@@ -34,7 +35,7 @@ public class ClientService {
 
    /* public Client findById(Long id) {
         return clientRepository.findById(id);
-    }*/
+    }TODO DELETE*/
 
     public ClientDTO findById(Long id)  {
         return this.clientMapper.toDto(clientRepository.findById(id));

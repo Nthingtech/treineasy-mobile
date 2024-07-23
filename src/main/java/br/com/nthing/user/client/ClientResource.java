@@ -6,9 +6,11 @@ import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -78,24 +80,39 @@ public class ClientResource {
     }
 
 
-   /* @PUT
+    /*@PUT
     @Path("update")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public Response updateClient(@QueryParam("id") Long id, Client client) {
-        Client foundClient = clientService.findById(id); //TODO
+        Client foundClient = clientService.findById(id);
         if (foundClient == null) {
             return Response.status(Response.Status.NOT_FOUND).entity("Client não encontrado").build();
         }
         clientService.updateClient(client);
         return Response.status(Response.Status.OK).entity(client).build();
-    }TODO REFACTOR TO DTO*/
+    }TODO DELETE*/
+
+    @PUT
+    @Path("update")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Response updateClient(@QueryParam("id") Long id, ClientDTO clientDTO) {
+        ClientDTO foundClientDto = clientService.findById(id);
+
+        clientService.updateClient(clientDTO);
+        return Response.status(Response.Status.OK).entity(clientDTO).build();
+    }
 
     @DELETE
-    public Response deleteClient(@PathParam("id") Long id) {
+    //@Consumes(MediaType.APPLICATION_JSON)
+    @Transactional
+    @Path("delete")
+    public Response deleteClient(@QueryParam("id") Long id) {
         clientService.deleteClient(id);
-        return Response.status(Response.Status.OK).build();
+        return Response.status(Response.Status.NO_CONTENT).build();
     }
 
 }
