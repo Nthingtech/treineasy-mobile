@@ -107,7 +107,6 @@ public class ClientResource {
     }
 
     @DELETE
-    //@Consumes(MediaType.APPLICATION_JSON)
     @Transactional
     @Path("delete")
     public Response deleteClient(@QueryParam("id") Long id) {
