@@ -6,11 +6,9 @@ import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
-import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -28,9 +26,9 @@ public class ClientResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public Response findById(@PathParam("id") Long id) { //TODO TEST @PathParam
-        Client client = clientService.findById(id);
-        if (client != null) {
-            return Response.status(Response.Status.OK).entity(client).build();
+        ClientDTO clientDTO = clientService.findById(id);
+        if (clientDTO != null) {
+            return Response.status(Response.Status.OK).entity(clientDTO).build();
         }
 
         return Response.status(Response.Status.NOT_FOUND).build();
@@ -80,7 +78,7 @@ public class ClientResource {
     }
 
 
-    @PUT
+   /* @PUT
     @Path("update")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -92,7 +90,7 @@ public class ClientResource {
         }
         clientService.updateClient(client);
         return Response.status(Response.Status.OK).entity(client).build();
-    }
+    }TODO REFACTOR TO DTO*/
 
     @DELETE
     public Response deleteClient(@PathParam("id") Long id) {

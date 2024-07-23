@@ -32,13 +32,17 @@ public class ClientService {
         clientRepository.deleteById(id);
     }
 
-    public Client findById(Long id) {
+   /* public Client findById(Long id) {
         return clientRepository.findById(id);
+    }*/
+
+    public ClientDTO findById(Long id)  {
+        return this.clientMapper.toDto(clientRepository.findById(id));
     }
 
     /*public List<Client> listAll() {
         return clientRepository.listAll();
-    }*/
+    }TODO DELETE*/
 
     public List<ClientDTO> listAll() {
         return this.clientMapper.toDtoList(clientRepository.listAll());
@@ -47,6 +51,7 @@ public class ClientService {
     public List<Client> searchByKeywordClient(String key) {
         return clientRepository.findByFirstOrLast(key); //todo test method first or lastname
     }
+
 
     public ClientDTO createClient(ClientDTO clientDTO) {
         Client client = this.clientMapper.toEntity(clientDTO);
