@@ -41,8 +41,8 @@ public class ClientResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public Response listClient() {
-        List<Client> clients = clientService.listAll();
-        return Response.status(Response.Status.OK).entity(clients).build();
+        List<ClientDTO> clientsDTO = clientService.listAll();
+        return Response.status(Response.Status.OK).entity(clientsDTO).build();
     }
 
     @GET
@@ -57,7 +57,7 @@ public class ClientResource {
         return Response.status(Response.Status.NOT_FOUND).build();
     }
 
-    @POST
+    /*@POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -67,13 +67,13 @@ public class ClientResource {
             return Response.status(Response.Status.CREATED).entity(client).build();
         }
         return Response.status(Response.Status.BAD_REQUEST).build();
-    }
+    }TODO DELETE*/
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    @Path("clients1")
+    @Path("create")
     public Response createClient(ClientDTO clientDTO){
         ClientDTO createClientDto = clientService.createClient(clientDTO);
         return Response.status(Response.Status.CREATED).entity(createClientDto).build();

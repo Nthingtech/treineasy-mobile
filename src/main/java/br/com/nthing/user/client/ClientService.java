@@ -14,7 +14,7 @@ public class ClientService {
     @Inject
     ClientMapper clientMapper;
 
-    public Client createNewClient(Client cli) {
+    /*public Client createNewClient(Client cli) {
 
         if (cli.getName() == null || cli.getName().getFirstName().isEmpty() || cli.getName().getLastName().isEmpty()) {
             return null;
@@ -22,7 +22,7 @@ public class ClientService {
         clientRepository.persist(cli);
 
         return cli;
-    }
+    }TODO DELETE*/
 
     public void updateClient(Client client) {
         clientRepository.updateClient(client);
@@ -36,8 +36,12 @@ public class ClientService {
         return clientRepository.findById(id);
     }
 
-    public List<Client> listAll() {
+    /*public List<Client> listAll() {
         return clientRepository.listAll();
+    }*/
+
+    public List<ClientDTO> listAll() {
+        return this.clientMapper.toDtoList(clientRepository.listAll());
     }
 
     public List<Client> searchByKeywordClient(String key) {
