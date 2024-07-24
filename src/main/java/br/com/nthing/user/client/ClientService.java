@@ -49,10 +49,10 @@ public class ClientService {
         return this.clientMapper.toDtoList(clientRepository.listAll());
     }
 
-    public List<Client> searchByKeywordClient(String key) {
-        return clientRepository.findByFirstOrLast(key); //todo test method first or lastname
-    }
 
+    public List<ClientDTO> searchByKeywordClient(String key) {
+        return this.clientMapper.toDtoList(clientRepository.findByFirstOrLast(key));
+    }
 
     public ClientDTO createClient(ClientDTO clientDTO) {
         Client client = this.clientMapper.toEntity(clientDTO);
@@ -62,6 +62,6 @@ public class ClientService {
 
 
     public List<Client> searchByBirthday(String key) {
-        return List.of();
+        return List.of(); //TODO
     }
 }

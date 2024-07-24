@@ -24,10 +24,10 @@ public class ClientResource {
 
 
     @GET
-    @Path("findById/{id}")
+    @Path("findById")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public Response findById(@PathParam("id") Long id) { //TODO TEST @PathParam
+    public Response findById(@QueryParam("id") Long id) { //TODO TEST @PathParam
         ClientDTO clientDTO = clientService.findById(id);
         if (clientDTO != null) {
             return Response.status(Response.Status.OK).entity(clientDTO).build();
@@ -50,24 +50,12 @@ public class ClientResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public Response findClientByName(@PathParam("keyClient") String keyClient) {
-        List<Client> clients = clientService.searchByKeywordClient(keyClient); //todo
-        if (!clients.isEmpty()) {
-            return Response.status(Response.Status.OK).entity(clients).build();
+        List<ClientDTO> clientsDTO = clientService.searchByKeywordClient(keyClient); //todo
+        if (!clientsDTO.isEmpty()) {
+            return Response.status(Response.Status.OK).entity(clientsDTO).build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();
     }
-
-    /*@POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
-    public Response newClient(Client client){
-        Client cli = clientService.createNewClient(client);
-        if (cli != null) {
-            return Response.status(Response.Status.CREATED).entity(client).build();
-        }
-        return Response.status(Response.Status.BAD_REQUEST).build();
-    }TODO DELETE*/
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -78,21 +66,6 @@ public class ClientResource {
         ClientDTO createClientDto = clientService.createClient(clientDTO);
         return Response.status(Response.Status.CREATED).entity(createClientDto).build();
     }
-
-
-    /*@PUT
-    @Path("update")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
-    public Response updateClient(@QueryParam("id") Long id, Client client) {
-        Client foundClient = clientService.findById(id);
-        if (foundClient == null) {
-            return Response.status(Response.Status.NOT_FOUND).entity("Client não encontrado").build();
-        }
-        clientService.updateClient(client);
-        return Response.status(Response.Status.OK).entity(client).build();
-    }TODO DELETE*/
 
     @PUT
     @Path("update")

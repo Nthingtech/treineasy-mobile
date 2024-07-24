@@ -14,9 +14,9 @@ public class ClientRepository implements PanacheRepository<Client> {
 
 
 
-    public int updateClient(Client client) {
+    public void updateClient(Client client) {
         Client existingClient = find("id", client.getId()).firstResult();
-        if (existingClient != null) {
+
             existingClient.setInstagram(client.getInstagram());
             existingClient.getName().setFirstName(client.getName().getFirstName());
             existingClient.getName().setLastName(client.getName().getLastName());
@@ -34,11 +34,8 @@ public class ClientRepository implements PanacheRepository<Client> {
             existingClient.setEmail(client.getEmail());
             existingClient.setGender(client.getGender());
 
-
             persist(existingClient);
-            return 1;
-        } else {
-            return 0;
-        }
     }
+
+    //TODO CREATE SEARCH BIRTHDAY
 }
