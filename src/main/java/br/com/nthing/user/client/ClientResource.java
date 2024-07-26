@@ -14,6 +14,7 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Path("clients")
@@ -55,6 +56,15 @@ public class ClientResource {
             return Response.status(Response.Status.OK).entity(clientsDTO).build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();
+    }
+
+    @GET
+    @Path("birthday")
+    @Produces
+    @Transactional
+    public Response searchBirthday(@QueryParam("birthday") LocalDate birthday) {
+        List<ClientDTO>clientsDTO = clientService.searchByBirthday(birthday);
+        return Response.status(Response.Status.OK).entity(clientsDTO).build();
     }
 
     @POST

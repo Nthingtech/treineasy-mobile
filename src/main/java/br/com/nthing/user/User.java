@@ -12,6 +12,7 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 
 @MappedSuperclass
 public abstract class User {
@@ -23,6 +24,16 @@ public abstract class User {
 
     @Column(name = "birthday", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     protected LocalDate birthday;
+
+    @Column(name = "age")
+    protected int age;
+
+
+    public Integer getAgeYears() {
+        LocalDate today = LocalDate.now();
+        Period calcAge = Period.between(this.birthday, today);
+        return calcAge.getYears();//todo move to service
+    }
 
     @CPF
     @Pattern(regexp = "\\d+", message = "O campo deve conter apenas dígitos numéricos.")
@@ -52,9 +63,10 @@ public abstract class User {
     public User() {
     }
 
-    public User(UserName name, LocalDate birthday, String cpf, Address address, Phone phone, String email, Gender gender, LocalDateTime dtRegister) {
+    public User(UserName name, LocalDate birthday, Integer age, String cpf, Address address, Phone phone, String email, Gender gender, LocalDateTime dtRegister) {
         this.name = name;
         this.birthday = birthday;
+        this.age = age;
         this.cpf = cpf;
         this.address = address;
         this.phone = phone;
@@ -78,6 +90,14 @@ public abstract class User {
 
     public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
+    }
+
+    public Integer getAge() {
+        return getAgeYears();
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public @CPF @Pattern(regexp = "\\d+", message = "O campo deve conter apenas dígitos numéricos.") String getCpf() {
@@ -124,11 +144,13 @@ public abstract class User {
         return dtRegister;
     }
 
+
     @Override
     public String toString() {
         return "User{" +
                 "name=" + name +
                 ", birthday=" + birthday +
+                ", age=" + age +
                 ", cpf='" + cpf + '\'' +
                 ", address=" + address +
                 ", phone=" + phone +

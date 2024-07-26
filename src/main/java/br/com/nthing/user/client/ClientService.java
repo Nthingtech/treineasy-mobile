@@ -3,6 +3,7 @@ package br.com.nthing.user.client;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @ApplicationScoped
@@ -33,17 +34,11 @@ public class ClientService {
         clientRepository.deleteById(id);
     }
 
-   /* public Client findById(Long id) {
-        return clientRepository.findById(id);
-    }TODO DELETE*/
 
     public ClientDTO findById(Long id)  {
         return this.clientMapper.toDto(clientRepository.findById(id));
     }
 
-    /*public List<Client> listAll() {
-        return clientRepository.listAll();
-    }TODO DELETE*/
 
     public List<ClientDTO> listAll() {
         return this.clientMapper.toDtoList(clientRepository.listAll());
@@ -61,7 +56,9 @@ public class ClientService {
     }
 
 
-    public List<Client> searchByBirthday(String key) {
-        return List.of(); //TODO
+    public List<ClientDTO> searchByBirthday(LocalDate key) {
+        return this.clientMapper.toDtoList(clientRepository.listBirthday(key)); //TODO
     }
+
+
 }

@@ -3,6 +3,7 @@ package br.com.nthing.user.client;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @ApplicationScoped
@@ -13,6 +14,9 @@ public class ClientRepository implements PanacheRepository<Client> {
     }
 
 
+    public List<Client> listBirthday(LocalDate birthday) {
+        return list("birthday = ?1", birthday) ;
+    }
 
     public void updateClient(Client client) {
         Client existingClient = find("id", client.getId()).firstResult();
