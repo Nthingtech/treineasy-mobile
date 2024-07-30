@@ -35,7 +35,7 @@ public class Client extends User {
     }
 
 
-    public Client(UserName name, LocalDate birthday, int age, String cpf, Address address, Phone phone, String email, Gender gender, LocalDateTime dtRegister, Long id, String instagram) {
+    public Client(UserName name, LocalDate birthday, Integer age, String cpf, Address address, Phone phone, String email, Gender gender, LocalDateTime dtRegister, Long id, String instagram) {
         super(name, birthday, age, cpf, address, phone, email, gender, dtRegister);
         this.id = id;
         this.instagram = instagram;

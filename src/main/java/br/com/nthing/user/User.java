@@ -26,14 +26,7 @@ public abstract class User {
     protected LocalDate birthday;
 
     @Column(name = "age")
-    protected int age;
-
-
-    public Integer getAgeYears() {
-        LocalDate today = LocalDate.now();
-        Period calcAge = Period.between(this.birthday, today);
-        return calcAge.getYears();//todo move to service
-    }
+    protected Integer age;
 
     @CPF
     @Pattern(regexp = "\\d+", message = "O campo deve conter apenas dígitos numéricos.")
@@ -93,11 +86,13 @@ public abstract class User {
     }
 
     public Integer getAge() {
-        return getAgeYears();
+        return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setAge() {
+        LocalDate today = LocalDate.now();
+        Period calcAge = Period.between(this.birthday, today);
+        this.age = calcAge.getYears();
     }
 
     public @CPF @Pattern(regexp = "\\d+", message = "O campo deve conter apenas dígitos numéricos.") String getCpf() {

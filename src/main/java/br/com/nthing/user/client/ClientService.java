@@ -11,19 +11,9 @@ public class ClientService {
 
     @Inject
     private ClientRepository clientRepository;
-
     @Inject
     ClientMapper clientMapper;
 
-    /*public Client createNewClient(Client cli) {
-
-        if (cli.getName() == null || cli.getName().getFirstName().isEmpty() || cli.getName().getLastName().isEmpty()) {
-            return null;
-        }
-        clientRepository.persist(cli);
-
-        return cli;
-    }TODO DELETE*/
 
     public void updateClient(ClientDTO clientDTO) {
         Client client = this.clientMapper.toEntity(clientDTO);
@@ -34,16 +24,13 @@ public class ClientService {
         clientRepository.deleteById(id);
     }
 
-
     public ClientDTO findById(Long id)  {
         return this.clientMapper.toDto(clientRepository.findById(id));
     }
 
-
     public List<ClientDTO> listAll() {
         return this.clientMapper.toDtoList(clientRepository.listAll());
     }
-
 
     public List<ClientDTO> searchByKeywordClient(String key) {
         return this.clientMapper.toDtoList(clientRepository.findByFirstOrLast(key));
@@ -55,10 +42,8 @@ public class ClientService {
         return this.clientMapper.toDto(client);
     }
 
-
     public List<ClientDTO> searchByBirthday(LocalDate key) {
-        return this.clientMapper.toDtoList(clientRepository.listBirthday(key)); //TODO
+        return this.clientMapper.toDtoList(clientRepository.listBirthday(key));
     }
-
 
 }

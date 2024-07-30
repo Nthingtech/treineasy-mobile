@@ -11,31 +11,30 @@ import java.util.List;
 
 
 @ApplicationScoped
-public class TrainingService implements ITrainingService {
+public class TrainingService  {
 
     @Inject
     private TrainingRepository trainingRepository;
 
-    @Override
+
     @Transactional
     public Training createNewTraining(Training trai) {
         trainingRepository.persist(trai);
         return trai;
     }
 
-    @Override
+
     @Transactional
     public void alterTraining(Training training) {
         trainingRepository.updateTrainingRepository(training);
     }
 
-    @Override
+
     @Transactional
     public void deleteTraining(Long id) {
         trainingRepository.deleteById(id);
     }
 
-    @Override
     @Transactional
     public Training closeTraining(Long id) {
         Training training = trainingRepository.findById(id);
@@ -60,21 +59,16 @@ public class TrainingService implements ITrainingService {
         return training; //TODO SUM TRAINING CONCLUDED
     }
 
-
-    @Override
     @Transactional
     public Training findById(Long id) {
         return trainingRepository.findById(id);
     }
 
-
-    @Override
     @Transactional
     public List<Training> listAll() {
         return trainingRepository.listAll();
     }
 
-    @Override
     @Transactional
     public List<Training> searchByKeywordTraining(String keytrai) {
         return trainingRepository.findByKeywordTraining(keytrai);

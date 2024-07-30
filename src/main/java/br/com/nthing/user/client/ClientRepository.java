@@ -41,5 +41,4 @@ public class ClientRepository implements PanacheRepository<Client> {
             persist(existingClient);
     }
 
-    //TODO CREATE SEARCH BIRTHDAY
 }
