@@ -25,7 +25,6 @@ public class PrescriptionService implements IPrescriptionService {
             prescriptionRepository.persist(newPrescription);
             return newPrescription;
     }
-
     @Override
     @Transactional
     public void updatePrescription(Prescription prescription) {

@@ -15,8 +15,9 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tbl_prescription")
@@ -26,21 +27,21 @@ public class Prescription {
     @Column(name = "id_prescription")
     private Long id;
 
-    @Column(name = "name_prescription", length = 20, nullable = true)
+    @Column(name = "name_prescription", length = 20)
     private String namePrescription;
 
-    @Column(name = "conclude_at", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE", nullable = true)
+    @Column(name = "conclude_at", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private LocalDateTime concludedAt;
 
     @CreationTimestamp
-    @Column(name = "start_prescription", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE", nullable = true)
+    @Column(name = "start_prescription", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private LocalDateTime startPrescription;
 
     @UpdateTimestamp
-    @Column(name = "update_prescription", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE", nullable = true)
-    private LocalDateTime updatePrescription;
+    @Column(name = "update_prescription", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    private LocalDateTime updatePrescription;//TODO DELETE
 
-    @Column(name = "total_prescription", nullable = true)
+    @Column(name = "total_prescription")
     private Integer totalPrescription;
 
     @Column(name ="completed_workouts" )
@@ -49,7 +50,7 @@ public class Prescription {
 
     @OneToMany(mappedBy = "prescription", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnoreProperties("prescription")
-    private List<Training> trainings;
+    private Set<Training> trainings = new HashSet<>();
 
 
     public Prescription() {
@@ -107,7 +108,9 @@ public class Prescription {
     }
 
     public Integer getTotalPrescription() {
-        return totalPrescription;
+        return totalPrescription = trainings.stream()
+                .mapToInt(Training::getTotalTraining)
+                .sum();
     }
 
     public void setTotalPrescription(Integer totalPrescription) {
@@ -122,11 +125,11 @@ public class Prescription {
         this.completedWorkouts = completedWorkouts;
     }
 
-    public List<Training> getTrainings() {
+    public Set<Training> getTrainings() {
         return trainings;
     }
 
-    public void setTrainings(List<Training> trainings) {
+    public void setTrainings(Set<Training> trainings) {
         this.trainings = trainings;
     }
 
