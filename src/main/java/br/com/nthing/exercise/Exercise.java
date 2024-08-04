@@ -12,7 +12,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tbl_exercise")
-//@ApplicationScoped
 public class Exercise {
 
     @Id

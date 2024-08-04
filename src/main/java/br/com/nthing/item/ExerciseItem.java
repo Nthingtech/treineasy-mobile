@@ -2,6 +2,7 @@ package br.com.nthing.item;
 
 import br.com.nthing.exercise.Exercise;
 import br.com.nthing.training.Training;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -39,6 +40,7 @@ public class ExerciseItem {
 
     @ManyToOne
     @JoinColumn(name = "tbl_training_id_training")
+    @JsonIgnoreProperties("itens")
     private Training training;
 
     @ManyToOne

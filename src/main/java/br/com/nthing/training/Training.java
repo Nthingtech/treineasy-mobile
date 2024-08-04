@@ -51,6 +51,7 @@ public class Training {
 
     @ManyToOne
     @JoinColumn(name = "tbl_prescription_id_prescription")
+    @JsonIgnoreProperties("trainings")
     private Prescription prescription;
 
 
