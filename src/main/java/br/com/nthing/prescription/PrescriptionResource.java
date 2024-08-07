@@ -1,6 +1,7 @@
 package br.com.nthing.prescription;
 
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -24,6 +25,7 @@ public class PrescriptionResource {
     @GET
     @Path("/listprescription")
     @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
     public Response get() {
         List<Prescription> prescriptions = prescriptionService.listAll();
         return Response.ok(prescriptions).build();
@@ -32,6 +34,7 @@ public class PrescriptionResource {
     @GET
     @Path("findById")
     @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
     public Response findById(@QueryParam("id") Long id) {
         Prescription prescription = prescriptionService.findById(id);
         if (prescription != null) {
@@ -43,6 +46,7 @@ public class PrescriptionResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
     public Response createPrescription(Prescription prescription) {
         Prescription prescript = prescriptionService.createPrescription(prescription);
         if (prescript != null) {
@@ -55,6 +59,7 @@ public class PrescriptionResource {
     @Path("update")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
     public Response updatePrescription(@QueryParam("id") Long id, Prescription prescription) {
         prescription.setId(id);
         Prescription foundPrescription = prescriptionService.findById(id);
@@ -67,6 +72,7 @@ public class PrescriptionResource {
 
     @DELETE
     @Path("delete")
+    @Transactional
     public Response deletePrescription(@QueryParam("id") Long id) {
         prescriptionService.deletePrescription(id);
         return Response.status(Response.Status.NO_CONTENT).build();

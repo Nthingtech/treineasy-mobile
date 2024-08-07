@@ -3,7 +3,6 @@ package br.com.nthing.training;
 import br.com.nthing.training.enums.TrainingStatus;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,25 +16,25 @@ public class TrainingService  {
     private TrainingRepository trainingRepository;
 
 
-    @Transactional
+
     public Training createNewTraining(Training trai) {
         trainingRepository.persist(trai);
         return trai;
     }
 
 
-    @Transactional
+
     public void alterTraining(Training training) {
         trainingRepository.updateTrainingRepository(training);
     }
 
 
-    @Transactional
+
     public void deleteTraining(Long id) {
         trainingRepository.deleteById(id);
     }
 
-    @Transactional
+
     public Training closeTraining(Long id) {
         Training training = trainingRepository.findById(id);
         if (training == null) {
@@ -59,17 +58,17 @@ public class TrainingService  {
         return training; //TODO SUM TRAINING CONCLUDED
     }
 
-    @Transactional
+
     public Training findById(Long id) {
         return trainingRepository.findById(id);
     }
 
-    @Transactional
+
     public List<Training> listAll() {
         return trainingRepository.listAll();
     }
 
-    @Transactional
+
     public List<Training> searchByKeywordTraining(String keytrai) {
         return trainingRepository.findByKeywordTraining(keytrai);
     }

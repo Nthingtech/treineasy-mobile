@@ -2,7 +2,6 @@ package br.com.nthing.prescription;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 
 import java.util.List;
 
@@ -14,24 +13,21 @@ public class PrescriptionService implements IPrescriptionService {
     PrescriptionRepository prescriptionRepository;
 
     @Override
-    @Transactional
     public Prescription findById(Long id) {
         return prescriptionRepository.findById(id);
     }
 
     @Override
-    @Transactional
     public Prescription createPrescription(Prescription newPrescription) {
             prescriptionRepository.persist(newPrescription);
             return newPrescription;
     }
     @Override
-    @Transactional
     public void updatePrescription(Prescription prescription) {
         prescriptionRepository.updatePrescritption(prescription);
     }
 
-    @Transactional
+
     @Override
     public void deletePrescription(Long id) {
         prescriptionRepository.deleteById(id);
@@ -39,17 +35,14 @@ public class PrescriptionService implements IPrescriptionService {
 
 
     @Override
-    @Transactional
     public List<Prescription> listAll() {
         return prescriptionRepository.listAll();
     }
 
     @Override
-    @Transactional
     public List<Prescription> searchByKeywordPrescription(String keypresc) {
         return prescriptionRepository.findKeywordPrescription(keypresc);
     }
-
 
 
 }

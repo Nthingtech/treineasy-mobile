@@ -17,6 +17,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -47,7 +48,7 @@ public class Training {
 
     @OneToMany(mappedBy = "training", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnoreProperties("training")
-    private List<ExerciseItem> itens;
+    private List<ExerciseItem> itens = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "tbl_prescription_id_prescription")

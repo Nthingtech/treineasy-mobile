@@ -1,6 +1,7 @@
 package br.com.nthing.training;
 
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -26,6 +27,7 @@ public class TrainingResource {
     @GET
     @Path("/listtraining")
     @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
     public Response get() {
         List<Training> trainings = trainingService.listAll();
         return Response.ok(trainings).build();
@@ -34,6 +36,7 @@ public class TrainingResource {
     @GET
     @Path("training/{keytrai}")
     @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
     public Response findKeywordTraining(@PathParam("keytrai") String keytrai) {
         List<Training> trainings = trainingService.searchByKeywordTraining(keytrai);
         if (!trainings.isEmpty()) {
@@ -45,6 +48,7 @@ public class TrainingResource {
     @GET
     @Path("findById")
     @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
     public Response findById(@QueryParam("id") Long id) {
         Training training = trainingService.findById(id);
         if (training != null) {
@@ -56,6 +60,7 @@ public class TrainingResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
     public Response createTraining(Training training) {
         Training trai = trainingService.createNewTraining(training);
         if (trai != null) {
@@ -68,6 +73,7 @@ public class TrainingResource {
     @Path("update")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
     public Response updateTraining(@QueryParam("id") Long id, Training training) {
         training.setId(id);
         Training foundTraining = trainingService.findById(id);
@@ -82,6 +88,7 @@ public class TrainingResource {
     @Path("closetraining")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
     public Response closeTraining(@QueryParam("id") Long id, Training training) {
         Training foundTraining = trainingService.findById(id);
         if(foundTraining == null) {
@@ -103,6 +110,7 @@ public class TrainingResource {
 
     @DELETE
     @Path("delete")
+    @Transactional
     public Response deleteTraining(@QueryParam("id") Long id) {
         trainingService.deleteTraining(id);
         return Response.status(Response.Status.NO_CONTENT).build();

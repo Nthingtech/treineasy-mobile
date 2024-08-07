@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PostLoad;
 import jakarta.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -52,6 +53,14 @@ public class Prescription {
     @JsonIgnoreProperties("prescription")
     private Set<Training> trainings = new HashSet<>();
 
+    @PostLoad
+    public void updateTotalPrescription() {
+        totalPrescription = trainings.stream()
+                .mapToInt(Training::getTotalTraining)
+                .sum();
+    }
+
+
 
     public Prescription() {
 
@@ -66,6 +75,7 @@ public class Prescription {
         this.totalPrescription = totalPrescription;
         this.completedWorkouts = completedWorkouts;
     }
+
 
     public Long getId() {
         return id;
@@ -108,9 +118,7 @@ public class Prescription {
     }
 
     public Integer getTotalPrescription() {
-        return totalPrescription = trainings.stream()
-                .mapToInt(Training::getTotalTraining)
-                .sum();
+        return totalPrescription;
     }
 
     public void setTotalPrescription(Integer totalPrescription) {
@@ -132,6 +140,7 @@ public class Prescription {
     public void setTrainings(Set<Training> trainings) {
         this.trainings = trainings;
     }
+
 
 
     @Override
