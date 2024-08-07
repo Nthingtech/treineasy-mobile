@@ -13,7 +13,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.PostLoad;
 import jakarta.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -37,10 +36,6 @@ public class Prescription {
     @CreationTimestamp
     @Column(name = "start_prescription", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private LocalDateTime startPrescription;
-
-    @UpdateTimestamp
-    @Column(name = "update_prescription", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    private LocalDateTime updatePrescription;//TODO DELETE
 
     @Column(name = "total_prescription")
     private Integer totalPrescription;
@@ -66,12 +61,11 @@ public class Prescription {
 
     }
 
-    public Prescription(Long id, String namePrescription, LocalDateTime concludedAt, LocalDateTime startPrescription, LocalDateTime updatePrescription, Integer totalPrescription, Integer completedWorkouts) {
+    public Prescription(Long id, String namePrescription, LocalDateTime concludedAt, LocalDateTime startPrescription, Integer totalPrescription, Integer completedWorkouts) {
         this.id = id;
         this.namePrescription = namePrescription;
         this.concludedAt = concludedAt;
         this.startPrescription = startPrescription;
-        this.updatePrescription = updatePrescription;
         this.totalPrescription = totalPrescription;
         this.completedWorkouts = completedWorkouts;
     }
@@ -109,13 +103,6 @@ public class Prescription {
         this.startPrescription = startPrescription;
     }
 
-    public LocalDateTime getUpdatePrescription() {
-        return updatePrescription;
-    }
-
-    public void setUpdatePrescription(LocalDateTime updatePrescription) {
-        this.updatePrescription = updatePrescription;
-    }
 
     public Integer getTotalPrescription() {
         return totalPrescription;
@@ -163,7 +150,6 @@ public class Prescription {
                 ", namePrescription='" + namePrescription + '\'' +
                 ", concludedAt=" + concludedAt +
                 ", startPrescription=" + startPrescription +
-                ", updatePrescription=" + updatePrescription +
                 ", totalPrescription=" + totalPrescription +
                 ", completedWorkouts=" + completedWorkouts +
                 ", trainings=" + trainings +
