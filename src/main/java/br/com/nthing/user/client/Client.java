@@ -95,6 +95,7 @@ public class Client extends User {
         return "Client{" +
                 "id=" + id +
                 ", instagram='" + instagram + '\'' +
+                ", prescriptions=" + prescriptions +
                 ", name=" + name +
                 ", birthday=" + birthday +
                 ", age=" + age +
