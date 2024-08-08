@@ -1,22 +1,29 @@
 package br.com.nthing.user.client;
 
+import br.com.nthing.prescription.Prescription;
 import br.com.nthing.user.Address;
 import br.com.nthing.user.Gender;
 import br.com.nthing.user.Phone;
 import br.com.nthing.user.User;
 import br.com.nthing.user.UserName;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tbl_user")
@@ -28,7 +35,12 @@ public class Client extends User {
     @Column(name = "id_client")
     private Long id;
 
+    @Column(name = "instagram")
     private String instagram;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("client")
+    private Set<Prescription> prescriptions = new HashSet<>();
 
     public Client() {
 
@@ -55,6 +67,14 @@ public class Client extends User {
 
     public void setInstagram(String instagram) {
         this.instagram = instagram;
+    }
+
+    public Set<Prescription> getPrescriptions() {
+        return prescriptions;
+    }
+
+    public void setPrescriptions(Set<Prescription> prescriptions) {
+        this.prescriptions = prescriptions;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package br.com.nthing.prescription;
 
 import br.com.nthing.training.Training;
+import br.com.nthing.user.client.Client;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -9,6 +10,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PostLoad;
 import jakarta.persistence.Table;
@@ -47,6 +50,11 @@ public class Prescription {
     @OneToMany(mappedBy = "prescription", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnoreProperties("prescription")
     private Set<Training> trainings = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "tbl_client_id_client")
+    @JsonIgnoreProperties("prescriptions")
+    private Client client;
 
     @PostLoad
     public void updateTotalPrescription() {
