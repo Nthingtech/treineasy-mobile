@@ -31,6 +31,7 @@ public class PrescriptionResource {
         return Response.ok(prescriptions).build();
     }
 
+
     @GET
     @Path("findById")
     @Produces(MediaType.APPLICATION_JSON)

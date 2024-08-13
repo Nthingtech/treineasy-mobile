@@ -18,4 +18,6 @@ public class PrescriptionRepository implements PanacheRepository<Prescription> {
                 Parameters.with("namePrescription", prescription.getNamePrescription())
                         .and("id", prescription.getId()));
     }
+
+
 }
