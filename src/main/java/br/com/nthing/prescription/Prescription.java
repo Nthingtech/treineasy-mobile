@@ -52,8 +52,7 @@ public class Prescription {
     private Set<Training> trainings = new HashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "tbl_client_id_client")
-    @JsonIgnoreProperties("prescriptions")
+    @JoinColumn(name = "tbl_client_id_client") //TODO
     private Client client;
 
     @PostLoad

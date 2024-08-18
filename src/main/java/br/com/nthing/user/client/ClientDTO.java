@@ -10,4 +10,6 @@ import java.time.LocalDateTime;
 
 public record ClientDTO (Long id, String instagram, UserNameDTO name, LocalDate birthday, Integer age, String cpf, AddressDTO address, PhoneDTO phone,
                          String email, Gender gender, LocalDateTime dtRegister) {
+
+
 }

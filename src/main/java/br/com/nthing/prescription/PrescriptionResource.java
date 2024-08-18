@@ -84,7 +84,8 @@ public class PrescriptionResource {
         if (!prescriptions.isEmpty()) {
             return Response.status(Response.Status.OK).entity(prescriptions).build();
         }
-        return Response.status(Response.Status.NOT_FOUND).build();
+        return Response.status(Response.Status.NOT_FOUND).build(); //TODO
     }
+
 
 }
