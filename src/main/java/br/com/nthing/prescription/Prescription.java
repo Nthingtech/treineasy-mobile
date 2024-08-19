@@ -37,7 +37,7 @@ public class Prescription {
     private LocalDateTime concludedAt;
 
     @CreationTimestamp
-    @Column(name = "start_prescription", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    @Column(name = "start_prescription", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE", updatable = false)
     private LocalDateTime startPrescription;
 
     @Column(name = "total_prescription")
