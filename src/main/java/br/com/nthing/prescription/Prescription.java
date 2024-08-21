@@ -47,11 +47,11 @@ public class Prescription {
     private Integer completedWorkouts;
 
 
-    @OneToMany(mappedBy = "prescription", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "prescription", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("prescription")
     private Set<Training> trainings = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tbl_client_id_client") //TODO
     private Client client;
 
@@ -68,13 +68,15 @@ public class Prescription {
 
     }
 
-    public Prescription(Long id, String namePrescription, LocalDateTime concludedAt, LocalDateTime startPrescription, Integer totalPrescription, Integer completedWorkouts) {
+    public Prescription(Long id, String namePrescription, LocalDateTime concludedAt, LocalDateTime startPrescription, Integer totalPrescription,
+                        Integer completedWorkouts, Client client) {
         this.id = id;
         this.namePrescription = namePrescription;
         this.concludedAt = concludedAt;
         this.startPrescription = startPrescription;
         this.totalPrescription = totalPrescription;
         this.completedWorkouts = completedWorkouts;
+        this.client = client;
     }
 
 
@@ -125,6 +127,14 @@ public class Prescription {
 
     public void setCompletedWorkouts(Integer completedWorkouts) {
         this.completedWorkouts = completedWorkouts;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public Set<Training> getTrainings() {

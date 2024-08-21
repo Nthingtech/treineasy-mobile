@@ -28,7 +28,7 @@ public class ClientResource {
     @Path("findById")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public Response findById(@QueryParam("id") Long id) { //TODO TEST @PathParam
+    public Response findById(@QueryParam("id") Long id) {
         ClientDTO clientDTO = clientService.findById(id);
         if (clientDTO != null) {
             return Response.status(Response.Status.OK).entity(clientDTO).build();
