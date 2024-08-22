@@ -1,30 +1,26 @@
 package br.com.nthing.user.client;
 
-import br.com.nthing.prescription.Prescription;
 import br.com.nthing.user.Address;
 import br.com.nthing.user.Gender;
 import br.com.nthing.user.Phone;
 import br.com.nthing.user.User;
 import br.com.nthing.user.UserName;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
-@Table(name = "tbl_user")
+@Table(name = "tbl_user", indexes = {@Index(columnList = "instagram")})
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Client extends User {
 
@@ -36,22 +32,15 @@ public class Client extends User {
     @Column(name = "instagram")
     private String instagram;
 
-    @OneToMany(mappedBy = "client")
-    @JsonIgnoreProperties("client")
-    private Set<Prescription> prescriptions = new HashSet<>();
-
     public Client() {
 
     }
-
 
     public Client(UserName name, LocalDate birthday, Integer age, String cpf, Address address, Phone phone, String email, Gender gender, LocalDateTime dtRegister, Long id, String instagram) {
         super(name, birthday, age, cpf, address, phone, email, gender, dtRegister);
         this.id = id;
         this.instagram = instagram;
     }
-
-
 
     public Long getId() {
         return id;
@@ -67,14 +56,6 @@ public class Client extends User {
 
     public void setInstagram(String instagram) {
         this.instagram = instagram;
-    }
-
-    public Set<Prescription> getPrescriptions() {
-        return prescriptions;
-    }
-
-    public void setPrescriptions(Set<Prescription> prescriptions) {
-        this.prescriptions = prescriptions;
     }
 
     @Override

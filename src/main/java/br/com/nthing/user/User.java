@@ -7,6 +7,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -22,6 +23,7 @@ public abstract class User {
     @Column(name = "user_name")
     protected UserName name;
 
+    @Past
     @Column(name = "birthday", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     protected LocalDate birthday;
 

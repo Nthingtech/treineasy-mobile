@@ -47,12 +47,12 @@ public class Prescription {
     private Integer completedWorkouts;
 
 
-    @OneToMany(mappedBy = "prescription", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "prescription", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("prescription")
     private Set<Training> trainings = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tbl_client_id_client") //TODO
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "tbl_client_id_client", nullable = false) //TODO
     private Client client;
 
     @PostLoad
