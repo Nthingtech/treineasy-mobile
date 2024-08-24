@@ -1,29 +1,20 @@
 package br.com.nthing.prescription;
 
-import br.com.nthing.training.Training;
-import br.com.nthing.user.client.Client;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.PostLoad;
+import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
-@Table(name = "tbl_prescription")
+@Table(name = "tbl_prescription", indexes = {
+        @Index(name = "idx", columnList = "id_prescription")})
 public class Prescription {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -47,20 +38,9 @@ public class Prescription {
     private Integer completedWorkouts;
 
 
-    @OneToMany(mappedBy = "prescription", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties("prescription")
-    private Set<Training> trainings = new HashSet<>();
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+   /* @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "tbl_client_id_client", nullable = false) //TODO
-    private Client client;
-
-    @PostLoad
-    public void updateTotalPrescription() {
-        totalPrescription = trainings.stream()
-                .mapToInt(Training::getTotalTraining)
-                .sum();
-    }
+    private Client client;*/
 
 
 
@@ -69,14 +49,14 @@ public class Prescription {
     }
 
     public Prescription(Long id, String namePrescription, LocalDateTime concludedAt, LocalDateTime startPrescription, Integer totalPrescription,
-                        Integer completedWorkouts, Client client) {
+                        Integer completedWorkouts/*, Client client*/) { //TODO
         this.id = id;
         this.namePrescription = namePrescription;
         this.concludedAt = concludedAt;
         this.startPrescription = startPrescription;
         this.totalPrescription = totalPrescription;
         this.completedWorkouts = completedWorkouts;
-        this.client = client;
+        /*this.client = client;*/ //TODO
     }
 
 
@@ -129,22 +109,13 @@ public class Prescription {
         this.completedWorkouts = completedWorkouts;
     }
 
-    public Client getClient() {
+  /*  public Client getClient() {
         return client;
     }
 
     public void setClient(Client client) {
         this.client = client;
-    }
-
-    public Set<Training> getTrainings() {
-        return trainings;
-    }
-
-    public void setTrainings(Set<Training> trainings) {
-        this.trainings = trainings;
-    }
-
+    }*/ //TODO
 
 
     @Override
@@ -169,7 +140,6 @@ public class Prescription {
                 ", startPrescription=" + startPrescription +
                 ", totalPrescription=" + totalPrescription +
                 ", completedWorkouts=" + completedWorkouts +
-                ", trainings=" + trainings +
                 '}';
     }
 }

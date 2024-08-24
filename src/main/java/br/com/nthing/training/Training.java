@@ -15,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -46,13 +47,14 @@ public class Training {
     @Column(name = "tt_concluded_training")
     private Integer totalConcludedTraining;
 
-    @OneToMany(mappedBy = "training", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "training", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JsonIgnoreProperties("training")
     private List<ExerciseItem> itens = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "tbl_prescription_id_prescription")
-    @JsonIgnoreProperties("trainings")
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "PRESCRIPTION_id", nullable = false)
+    @NotNull
     private Prescription prescription;
 
 

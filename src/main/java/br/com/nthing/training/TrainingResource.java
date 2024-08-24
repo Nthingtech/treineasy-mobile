@@ -1,5 +1,6 @@
 package br.com.nthing.training;
 
+import br.com.nthing.prescription.Prescription;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -31,6 +32,17 @@ public class TrainingResource {
     public Response get() {
         List<Training> trainings = trainingService.listAll();
         return Response.ok(trainings).build();
+    }
+
+    @GET
+    @Path("/listByPrescription")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Response listByPrescription(@QueryParam("id") Long id) {
+        Prescription prescription = new Prescription();
+        prescription.setId(id);
+        return Response.ok(trainingService.listByPrescription(prescription.getId())).build();
+
     }
 
     @GET
@@ -106,7 +118,6 @@ public class TrainingResource {
         return Response.status(Response.Status.OK).entity(training).build();
 
     }
-
 
     @DELETE
     @Path("delete")

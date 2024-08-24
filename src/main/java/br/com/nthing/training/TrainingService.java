@@ -73,5 +73,17 @@ public class TrainingService  {
         return trainingRepository.findByKeywordTraining(keytrai);
     }
 
+    public List<Training> listByPrescription(Long prescriptionId) {
+        return trainingRepository.findByPrescriptionId(prescriptionId);
+    }
+
+    /*@PostLoad
+    public void updateTotalPrescription() { //TODO
+        totalPrescription = trainings.stream()
+                .mapToInt(Training::getTotalTraining)
+                .sum();
+    }*/
+
+
 
 }
