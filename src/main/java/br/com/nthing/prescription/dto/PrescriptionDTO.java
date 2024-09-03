@@ -1,4 +1,4 @@
-package br.com.nthing.prescription;
+package br.com.nthing.prescription.dto;
 
 import br.com.nthing.user.client.ClientDTO;
 

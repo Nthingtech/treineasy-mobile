@@ -10,6 +10,7 @@ import java.util.List;
 public class TrainingRepository implements PanacheRepository<Training> {
 
 
+
     public List<Training> findByKeywordTraining(String keyword) {
         return list("lower(nameTraining) like lower(?1)", "%" + keyword + "%");
     }
@@ -24,8 +25,6 @@ public class TrainingRepository implements PanacheRepository<Training> {
     public List<Training>findByPrescriptionId(Long prescriptionId) {
         return find("SELECT t FROM Training t WHERE t.prescription.id = ?1", prescriptionId).list();
     }
-
-
 
 
 }

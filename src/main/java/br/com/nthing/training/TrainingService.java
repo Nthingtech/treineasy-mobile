@@ -1,5 +1,6 @@
 package br.com.nthing.training;
 
+import br.com.nthing.prescription.PrescriptionRepository;
 import br.com.nthing.training.enums.TrainingStatus;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -15,6 +16,8 @@ public class TrainingService  {
     @Inject
     private TrainingRepository trainingRepository;
 
+    @Inject
+    private PrescriptionRepository prescriptionRepository;
 
 
     public Training createNewTraining(Training trai) {
@@ -76,6 +79,8 @@ public class TrainingService  {
     public List<Training> listByPrescription(Long prescriptionId) {
         return trainingRepository.findByPrescriptionId(prescriptionId);
     }
+
+
 
     /*@PostLoad
     public void updateTotalPrescription() { //TODO

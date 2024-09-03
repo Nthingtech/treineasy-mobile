@@ -34,6 +34,7 @@ public class TrainingResource {
         return Response.ok(trainings).build();
     }
 
+
     @GET
     @Path("/listByPrescription")
     @Produces(MediaType.APPLICATION_JSON)

@@ -1,5 +1,6 @@
 package br.com.nthing.prescription;
 
+import br.com.nthing.prescription.dto.PrescriptionDTO;
 import org.mapstruct.Mapper;
 
 import java.util.List;

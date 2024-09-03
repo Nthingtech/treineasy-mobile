@@ -1,4 +1,4 @@
-package br.com.nthing.training;
+package br.com.nthing.training.dtos;
 
 import br.com.nthing.training.enums.TrainingStatus;
 
