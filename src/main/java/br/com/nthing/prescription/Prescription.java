@@ -1,11 +1,15 @@
 package br.com.nthing.prescription;
 
+import br.com.nthing.user.client.Client;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -38,9 +42,9 @@ public class Prescription {
     private Integer completedWorkouts;
 
 
-   /* @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "tbl_client_id_client", nullable = false) //TODO
-    private Client client;*/
+    private Client client;
 
 
 
